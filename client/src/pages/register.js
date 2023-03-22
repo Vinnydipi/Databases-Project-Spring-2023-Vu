@@ -59,7 +59,7 @@ function Register()
                 <option value="student">Student</option>
               </select>
             </div>
-            <button onClick={register}>Register</button>
+            <button onClick={ register }>Register</button>
           </div>
     );
 }

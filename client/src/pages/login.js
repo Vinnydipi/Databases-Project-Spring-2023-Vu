@@ -67,8 +67,8 @@ function Login()
               setPassword(e.target.value);
               }}></input>
           </div>
-          <button onClick={login}>Login</button>
-          {isLoggedIn && <p>You are Logged in!</p>}
+          <button onClick={ login }>Login</button>
+          { isLoggedIn && <p>You are Logged in!</p> }
         </div>
     );
 }

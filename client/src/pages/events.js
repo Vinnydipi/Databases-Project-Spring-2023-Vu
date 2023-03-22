@@ -2,6 +2,9 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
 
+// Importing the logout feature
+import { logout } from './utils/logout';
+
 function events()
 {
 
@@ -9,12 +12,12 @@ function events()
         <div className='events'>
         {/* Buttons */}
         <button className="button" >Add Event</button>
-        {/* <button className="button" >Edit Event </button> */}
         <button className="button" >Delete Event</button>
         <button className="button" >Create RSO</button>
         <button className="button">Create University Account</button>
-
-
+        {/* Logs the user out*/}
+        <button className="button" onClick={ logout }>Logout</button>
+        
         {/* Event Table */}
         <table>
             <thead>

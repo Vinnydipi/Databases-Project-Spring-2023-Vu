@@ -13,12 +13,13 @@ function App()
 
   const [loginStatus, setLoginStatus] = useState('');
 
+  // Used to log the user in and create a cookie to track the current user 
   useEffect(() => {
     Axios.get("http://localhost:3001/login").then((response) => {
       if (response.data.loggedIn === true)
       {
         setLoginStatus(response.data.user[0].username);
-        console.log(`User ${response.data.user[0].username} is logged in.`);
+        console.log(`User ${ response.data.user[0].username } is logged in.`);
       }
     });
   }, []);
@@ -28,12 +29,12 @@ function App()
       {/*Only render Regist/Login if user is not authenticated!*/}
       {!loginStatus && (
         <>
-            <Register setLoginStatus={setLoginStatus}/>
-            <Login setLoginStatus={setLoginStatus}/>
+            <Register setLoginStatus={ setLoginStatus }/>
+            <Login setLoginStatus={ setLoginStatus }/>
         </>
       )}
       {/*Render Events if user is authenticated*/}
-      {loginStatus && <Events loginStatus={loginStatus}/>}
+      {loginStatus && <Events loginStatus={ loginStatus }/>}
     </div>
    );
 }
