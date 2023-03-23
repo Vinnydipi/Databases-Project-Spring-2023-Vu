@@ -17,7 +17,7 @@ export async function logout()
             // Clears the cookies
             sessionStorage.clear();
             // Returns the now logged out user to the login/register page
-            window.location.href = '/login';
+            window.location.href = '/';
         }
     }
     catch (error) 

@@ -30,7 +30,8 @@ app.use(
         secret: 'KHAN_VU',
         resave: false,
         saveUninitialized: false,
-        cookie: {
+        cookie: 
+        {
             expires: 2 * 60 * 60 * 1000, // Cookie Lasts for 2 hours
         }
     })
@@ -39,7 +40,7 @@ app.use(
 // Routes
 // Register page
 app.use('/register', registerRouter);
-// Login page, same as register page
+// Login page
 app.use('/login', loginRouter);
 // Used for the logout button on all the pages besides the register/login page
 app.use('/logout', logoutRouter);

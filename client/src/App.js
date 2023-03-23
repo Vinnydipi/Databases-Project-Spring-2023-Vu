@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Axios from 'axios';
 import './App.css';
 
@@ -6,7 +7,6 @@ import './App.css';
 import Register from './pages/register';
 import Login from './pages/login';
 import Events from './pages/events';
-// import Rso from './pages/RSO';
 
 function App() 
 {    
@@ -14,8 +14,10 @@ function App()
   const [loginStatus, setLoginStatus] = useState('');
 
   // Used to log the user in and create a cookie to track the current user 
-  useEffect(() => {
-    Axios.get("http://localhost:3001/login").then((response) => {
+  useEffect(() => 
+  {
+    Axios.get("http://localhost:3001/login").then((response) => 
+    {
       if (response.data.loggedIn === true)
       {
         setLoginStatus(response.data.user[0].username);
@@ -25,17 +27,15 @@ function App()
   }, []);
 
   return (
-    <div className='App'>
-      {/*Only render Regist/Login if user is not authenticated!*/}
-      {!loginStatus && (
-        <>
-            <Register setLoginStatus={ setLoginStatus }/>
-            <Login setLoginStatus={ setLoginStatus }/>
-        </>
-      )}
-      {/*Render Events if user is authenticated*/}
-      {loginStatus && <Events loginStatus={ loginStatus }/>}
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login setLoginStatus={setLoginStatus} />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/events" element={loginStatus ? <Events /> : <Login setLoginStatus={setLoginStatus} />} />
+        </Routes>
+      </BrowserRouter>
+    </>
    );
 }
 

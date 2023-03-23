@@ -4,7 +4,8 @@ const db = require('../connection');
 const router = express.Router();
 
 // Used to put user information into the database
-router.post('/', (req, res) => {
+router.post('/', (req, res) => 
+{
 
     const username = req.body.username;
     const password = req.body.password;

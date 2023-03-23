@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Register() 
 {
+    // Used to navigate to the login page
+    const navigate = useNavigate();
+
     // Info Used for the Registering of a new user
     const [usernameReg, setUsernameReg] = useState('');
     const [passwordReg, setPasswordReg ] = useState('');
@@ -59,6 +63,7 @@ function Register()
                 <option value="student">Student</option>
               </select>
             </div>
+            <button onClick={()=>navigate('/')}>Login Page</button>
             <button onClick={ register }>Register</button>
           </div>
     );

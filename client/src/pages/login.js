@@ -1,9 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Login()
 {
+    // To navigate to the register page
+    const navigate = useNavigate();
+    
     // Info used in the authenticating of Login Attempt
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -15,8 +19,10 @@ function Login()
     // Something to do with cookies
     Axios.defaults.withCredentials = true;
 
-    useEffect(() => {
-      Axios.get('http://localhost:3001/login').then((response) => {
+    useEffect(() => 
+    {
+      Axios.get('http://localhost:3001/login').then((response) => 
+      {
         if (response.data.loggedIn === true)
         {
           setLoginStatus(response.data.user[0].username)
@@ -28,11 +34,13 @@ function Login()
 
     // Used to Check the Login info and if correct then redirects 
     // to the Event page to show the events 
-    const login = () => {
+    const login = () => 
+    {
       Axios.post('http://localhost:3001/login', {
         username: username,
         password: password,
-        }).then((response) => {
+        }).then((response) => 
+        {
           if (response.data.message)
           {
             setLoginStatus(response.data.message);
@@ -41,6 +49,7 @@ function Login()
           {
             setLoginStatus(response.data[0].username);
             setIsLoggedIn(true);
+            navigate('/events');
             refresh();
           }
         });
@@ -48,7 +57,7 @@ function Login()
 
     // Refreshing the page
     const refresh = () => window.location.reload(true);
-    
+
     // HTML FOR THE FILE
     return (
         <div className='login'>
@@ -56,19 +65,22 @@ function Login()
           <div>
             <label>Username:</label>
             <input type="text"
-            onChange={(e) => {
+            onChange={(e) => 
+            {
               setUsername(e.target.value);
-              }}></input>
+            }}></input>
           </div>
           <div>
             <label>Password:</label>
             <input type="text"
-            onChange={(e) => {
+            onChange={(e) => 
+            {
               setPassword(e.target.value);
-              }}></input>
+            }}></input>
           </div>
+          <button onClick={()=>navigate('/register')}>Register Page</button>
           <button onClick={ login }>Login</button>
-          { isLoggedIn && <p>You are Logged in!</p> }
+          { isLoggedIn && 'User Logged in Rerouting'}
         </div>
     );
 }
