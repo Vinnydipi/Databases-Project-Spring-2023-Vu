@@ -2,10 +2,13 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
 
-function RSO()
+function Rso()
 {
-
+    return (
+        <div>
+            <h1>RSO PAGE</h1>
+        </div>
+    );
 }
 
-export default RSO;
-
+export default Rso;

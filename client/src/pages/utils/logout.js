@@ -2,7 +2,7 @@
 // Clearing the cookies and returning to the login/Register Page
 
 // Import Axios
-import axios from 'axios';
+import Axios from 'axios';
 
 export async function logout()
 {
@@ -10,7 +10,7 @@ export async function logout()
     {
         // Makes a post request to the http link
         // The "{ withcredential: true }" is passed to include any cookies currently in the browser
-        const response = await axios.get('http://localhost:3001/logout', { withCredentials: true });
+        const response = await Axios.get('http://localhost:3001/logout', { withCredentials: true });
         
         if (response.status === 200)
         {

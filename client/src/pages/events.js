@@ -5,7 +5,8 @@ import Axios from 'axios';
 // Importing the logout feature
 import { logout } from './utils/logout';
 
-function events()
+
+function Events()
 {
 
     return(
@@ -14,7 +15,8 @@ function events()
         <button className="button" >Add Event</button>
         <button className="button" >Delete Event</button>
         <button className="button" >Create RSO</button>
-        <button className="button">Create University Account</button>
+        <button className="button" >Join RSO</button>
+        <button className="button" >Create University Account</button>
         {/* Logs the user out*/}
         <button className="button" onClick={ logout }>Logout</button>
         
@@ -22,15 +24,16 @@ function events()
         <table>
             <thead>
             <tr>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Description</th>
-                <th>Time</th>
-                <th>View Map Link</th>
-                <th>Contact Number</th>
-                <th>Contact Email</th>
-                <th>Private/Public</th>
-                <th>RSO Hosting</th>
+                <th>Name...</th>
+                <th>Category...</th>
+                <th>Description...</th>
+                <th>Time...</th>
+                <th>Map Link...</th>
+                <th>Contact Number...</th>
+                <th>Contact Email...</th>
+                <th>Private/Public...</th>
+                <th>RSO Hosting...</th>
+                <th>Approved</th>
             </tr>
             </thead>
         </table>
@@ -38,4 +41,4 @@ function events()
     );
 }
 
-export default events;
+export default Events;
