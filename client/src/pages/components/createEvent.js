@@ -2,13 +2,13 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
 
-function Rso()
+function CreateEvent()
 {
     return (
         <div>
-            <h1>RSO PAGE</h1>
+            <h1>CREATE EVENT PAGE</h1>
         </div>
     );
 }
 
-export default Rso;
+export default CreateEvent;
