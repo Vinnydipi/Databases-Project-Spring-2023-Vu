@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Axios from 'axios';
-import './App.css';
+
 
 // Importing the pages
 import Register from './pages/register';

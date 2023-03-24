@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
 function Login()
 {
@@ -60,29 +61,38 @@ function Login()
 
     // HTML FOR THE FILE
     return (
-        <div className='login'>
+      <div className='login-container' style={{background: 'linear-gradient(to bottom, #A583E8, #7A3FE3)'}}>
+        <div className='login-box'>
           <h2>LOGIN</h2>
           <div>
             <label>Username:</label>
-            <input type="text"
+            <input 
+            type="text"
             onChange={(e) => 
             {
               setUsername(e.target.value);
-            }}></input>
+            }}
+            />
           </div>
           <div>
             <label>Password:</label>
-            <input type="text"
+            <input 
+            type="text"
             onChange={(e) => 
             {
               setPassword(e.target.value);
-            }}></input>
+            }}
+            />
           </div>
-          <button onClick={()=>navigate('/register')}>Register Page</button>
-          <button onClick={ login }>Login</button>
-          { isLoggedIn && 'User Logged in Rerouting'}
+          <div className='button-container'>
+            <button onClick={()=>navigate('/register')}>Register Page</button>
+            <button onClick={ login }>Login</button>
+            { isLoggedIn && 'User Logged in Rerouting'}
+          </div>
         </div>
+      </div>
     );
-}
+    
+};
 
 export default Login;
