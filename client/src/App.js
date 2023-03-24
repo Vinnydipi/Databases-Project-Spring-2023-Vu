@@ -6,6 +6,10 @@ import Axios from 'axios';
 import Register from './pages/register';
 import Login from './pages/login';
 import Events from './pages/events';
+import CreateRso from './pages/components/createRso';
+import ViewRso from './pages/components/viewRso';
+import CreateEvent from './pages/components/createEvent';
+import CreateUni from './pages/components/createUni';
 
 function App() 
 {    
@@ -32,6 +36,10 @@ function App()
           <Route path="/" element={<Login setLoginStatus={setLoginStatus} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/events" element={loginStatus ? <Events /> : <Login setLoginStatus={setLoginStatus} />} />
+          <Route path="/createRso" element={loginStatus ? <CreateRso /> : <Login setLoginStatus={setLoginStatus} /> } />
+          <Route path="/viewRso" element={loginStatus ? <ViewRso /> : <Login setLoginStatus={setLoginStatus} /> } />
+          <Route path="/createEvent" element={loginStatus ? <CreateEvent /> : <Login setLoginStatus={setLoginStatus} /> } />
+          <Route path="/createUni" element={loginStatus ? <CreateUni /> : <Login setLoginStatus={setLoginStatus} /> } />
         </Routes>
       </BrowserRouter>
     </>
