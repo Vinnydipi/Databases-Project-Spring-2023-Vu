@@ -22,7 +22,7 @@ function CreateEvent()
     return (
         <div>
             <div>
-                <button>Events NF</button>
+                <button className="button" onClick={()=>navigate('/events')}>View Events</button>
             </div>
             <h1>CREATE EVENT PAGE</h1>
             <div className='inputField'>
@@ -90,7 +90,7 @@ function CreateEvent()
                     </select>
                 </div>
             </div>  
-            <button>Test</button>
+            <button>Create Event NF</button>
         </div>
     );
 }
