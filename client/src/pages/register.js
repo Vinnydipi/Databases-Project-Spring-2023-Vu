@@ -14,7 +14,8 @@ function Register()
     const [userType, setUserType] = useState('');
 
     // Used to register a new User
-    const register = () => {
+    const register = () => 
+    {
         Axios.post('http://localhost:3001/register', {
         username: usernameReg,
         password: passwordReg,
@@ -57,7 +58,7 @@ function Register()
               <select name="userType" onChange={(e) =>{
                 setUserType(e.target.value);
                 }}>
-                <option value="">Select a User Type</option>
+                <option>Select a User Type</option>
                 <option value="superAdmin">Super Admin</option>
                 <option value="admin">Admin</option>
                 <option value="student">Student</option>
