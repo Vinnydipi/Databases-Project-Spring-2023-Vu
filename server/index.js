@@ -9,6 +9,7 @@ const session = require('express-session');
 const registerRouter = require('./routes/register');
 const loginRouter = require('./routes/login');
 const logoutRouter = require('./routes/logout');
+const rsoCreationRouter = require('./routes/rsoCreation');
 
 // Init Express
 const app = express();
@@ -44,6 +45,8 @@ app.use('/register', registerRouter);
 app.use('/login', loginRouter);
 // Used for the logout button on all the pages besides the register/login page
 app.use('/logout', logoutRouter);
+// Used for inserting a new rso to the database with the status of pending
+app.use('/createRso', rsoCreationRouter);
 
 app.listen(3001, () => {
     console.log('running on port 3001');

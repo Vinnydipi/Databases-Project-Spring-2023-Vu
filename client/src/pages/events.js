@@ -18,8 +18,7 @@ function Events()
         {/* Buttons */}
         <button className="button" onClick={()=>navigate('/createEvent')}>Create Event</button>
         <button className="button" onClick={()=>navigate('/createRso')}>Create RSO</button>
-        <button className="button" onClick={()=>navigate('/viewRso')}>View RSO's</button>
-        <button className="button" onClick={()=>navigate('/createUni')}>Create University</button>
+        {/* <button className="button" onClick={()=>navigate('/createUni')}>Create University</button> */}
         {/* Logs the user out*/}
         <button className="button" onClick={ logout }>Logout</button>
         

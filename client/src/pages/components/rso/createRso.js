@@ -12,14 +12,24 @@ function CreateRso()
     // useStates for the rso information
     const [rsoName, setRsoName] = useState('');
     const [emailDomain, setEmailDomain] = useState('');
-    const [userName, setUserName] = useState('');
+
+    // Used to register a new RSO with status = 'PENDING'
+    const submitRso = () => 
+    {
+        Axios.post('http://localhost:3001/createRso', {
+        rsoName: rsoName,
+        email: emailDomain,
+        }).then(() => {
+        alert('Successful insert');
+        });
+    };
 
     return (
         <div className='inputField'>
             <div>
                 <button className="button" onClick={()=>navigate('/events')}>View Events</button>
             </div>
-                <h1>Start Creating an RSO</h1>
+                <h1>RSO CREATION FORM</h1>
             <div>
                 <label>Rso Name</label>
                 <input type='text' onChange={(e) => {
@@ -32,14 +42,8 @@ function CreateRso()
                     setEmailDomain(e.target.value);
                 }}></input>
             </div>
-            <div>
-                <label>Enter future Admin Email</label>
-                <input type='text' onChange={(e) => {
-                    setUserName(e.target.value);
-                }}></input>
-            </div>
-            
-            <button>Submit RSO</button>
+           
+            <button onClick={ submitRso }>Submit RSO For Approval</button>
         </div>
     );
 }

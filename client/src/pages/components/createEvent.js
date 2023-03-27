@@ -19,6 +19,30 @@ function CreateEvent()
     const [hostRso, setHostRso] = useState('');
     const [access, setAccess] = useState('');
 
+    // Function to create a new event, sending info to back-end
+    // NOTES
+    // If the event is public then it MUST be approved by the superadmin
+    // Other wise just add the event to the table and proceed.
+    // Eventually you will have to only show the events that are needed...
+    // PUBLIC EVENTS --> EVERYONE CAN SEE
+    // PRIVATE EVENTS --> HOST UNI ONLY CAN SEE
+    // RSO EVENTS --> ONLY RSO MEMBERS CAN SEE
+    const createEvent = () => 
+    {
+        Axios.post('http://localhost:3001/createPrivateEvent', {
+            name: eventName,
+            category: category,
+            description: description,
+            time: dateAndTime,
+            mapLink: mapLink,
+            contactPhone: phoneNum,
+            contactEmail: contactEmail,
+            hostRso: hostRso,
+            
+
+        })
+    }
+
     return (
         <div>
             <div>
@@ -87,6 +111,7 @@ function CreateEvent()
                         <option>Select</option>
                         <option value='0'>Private</option>
                         <option value='1'>Public</option>
+                        <option value='2'>RSO</option>
                     </select>
                 </div>
             </div>  
