@@ -6,10 +6,11 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
 // Declaring the routes
-const registerRouter = require('./routes/register');
-const loginRouter = require('./routes/login');
-const logoutRouter = require('./routes/logout');
-const rsoCreationRouter = require('./routes/rsoCreation');
+const registerStudentRouter = require('./routes/users/registerStudent');
+const registerSuperAdminRouter = require('./routes/users/registerSuperAdmin');
+const loginRouter = require('./routes/users/login');
+const logoutRouter = require('./routes/components/logout');
+const rsoCreationRouter = require('./routes/rso/rsoCreation');
 
 // Init Express
 const app = express();
@@ -40,7 +41,8 @@ app.use(
 
 // Routes
 // Register page
-app.use('/register', registerRouter);
+app.use('/registerStudent', registerStudentRouter);
+app.use('/registerSuperAdmin', registerSuperAdminRouter);
 // Login page
 app.use('/login', loginRouter);
 // Used for the logout button on all the pages besides the register/login page
