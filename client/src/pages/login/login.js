@@ -26,11 +26,18 @@ function Login()
         if (response.data.loggedIn === true)
         {
           setLoginStatus(response.data.user[0].username)
-          console.log(`User ${response.data.user[0].username} is logged in.`);
+          console.log(`User ${response.data.user[0].username} is logged in as ${response.data.user[0].userType}.`);
           setIsLoggedIn(true);
         }
       });
     }, []);
+
+    // Navigate to the different userType Pages
+    const userTypeToPage = {
+      student: '/studentHome',
+      superadmin: '/superAdminHome',
+      admin: '/adminHome'
+    };
 
     // Used to Check the Login info and if correct then redirects 
     // to the Event page to show the events 
@@ -47,9 +54,14 @@ function Login()
           }
           else
           {
-            setLoginStatus(response.data[0].username);
+            const user = response.data;
+            setLoginStatus(user.username);
             setIsLoggedIn(true);
-            navigate('/events');
+
+            // Now check the userType and redirect accordingly
+            const userType = user.userType;
+            const nextPage = userTypeToPage[userType];
+            navigate(nextPage);
             refresh();
           }
         });

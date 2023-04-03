@@ -3,13 +3,18 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Axios from 'axios';
 import { UserContext } from './pages/utils/UserContext';
 
-// Importing the pages
-import RegisterStudent from './pages/register/registerStudent';
-import RegisterSuperAdmin from './pages/register/registerSuperAdmin';
+// Importing Pages
+// RandomVu Pages
 import Login from './pages/login/login';
-import Events from './pages/events/events';
-import CreateRso from './pages/rso/createRso';
-import CreateEvent from './pages/adminAccounts/superAdmin/createEvent/createEvent';
+// SuperAdmin Pages
+import RegisterSuperAdmin from './pages/register/registerSuperAdmin';
+import CreateEvent from './pages/accountType/superAdminPages/createEvent';
+import SuperAdminHome from './pages/accountType/superAdminPages/home/superAdminHome';
+// Admin Pages
+
+// Student Pages
+import StudentHome from './pages/accountType/studentPages/home/studentHome';
+import RegisterStudent from './pages/register/registerStudent';
 
 function App() 
 {    
@@ -33,15 +38,18 @@ function App()
 
   return (
     <>
-      <UserContext.Provider value={ userType  }>
+      <UserContext.Provider value={ userType }>
         <BrowserRouter>
           <Routes>
+            {/*Misc. Routes*/}
             <Route path="/" element={<Login setLoginStatus={ setLoginStatus } />} />
             <Route path="/registerStudent" element={<RegisterStudent />} />
             <Route path="/registerSuperAdmin" element={<RegisterSuperAdmin />} />
-            <Route path="/events" element={ loginStatus ? <Events /> : <Login setLoginStatus={ setLoginStatus } />} />
-            <Route path="/createRso" element={ loginStatus ? <CreateRso /> : <Login setLoginStatus={ setLoginStatus } /> } />
+            {/*Routes For Super Admin*/}
+            <Route path="/superAdminHome" element={ loginStatus ? <SuperAdminHome /> : <Login setLoginStatus={ setLoginStatus } /> } />
             <Route path="/createEvent" element={ loginStatus ? <CreateEvent /> : <Login setLoginStatus={ setLoginStatus } /> } />
+            {/*Routes For Student*/}
+            <Route path ="/studentHome" element={ loginStatus ? <StudentHome /> : <Login setLoginStatus={ setLoginStatus } /> } />
           </Routes>
         </BrowserRouter>
       </UserContext.Provider>
