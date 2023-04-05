@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './registerSuperAdmin.css';
 
 function RegisterSuperAdmin() 
 {
@@ -38,37 +39,32 @@ function RegisterSuperAdmin()
 
     // HTML FOR THE FILE 
     return (
-          <div className='registration'>
-          <h1>Superadmin Registration</h1>
-            <div>
-              <label>Username:</label>
-              <input type="text"
-              onChange={(e) => {
-                setUsernameReg(e.target.value);
-                }}></input>
-            </div>
-            <div>
-              <label>Email:</label>
-              <input 
-              type="text"
-              onChange={(e) => {
-                setEmailReg(e.target.value);
-                }}></input>
-            </div>
-            <div>
-              <label>Password:</label>
-              <input 
-              type="text"
-              onChange={(e) => {
-                setPasswordReg(e.target.value);
-                }}></input>
-            </div>
-            <div>
-              <button onClick={ superAdminRegister }>Register as SuperAdmin</button>
-            </div>
-            <button onClick={()=>navigate('/')}>To Login Page</button>
-            <button onClick={()=>navigate('/registerStudent')}>Student Account Registration</button>
-          </div>
+      <div class="registration">
+      <h1>Superadmin Registration</h1>
+      <div>
+        <label>Username:</label>
+        <input type="text" class="form-input" onChange={(e) => {
+          setUsernameReg(e.target.value);
+        }}></input>
+      </div>
+      <div>
+        <label>Email:</label>
+        <input type="text" class="form-input" onChange={(e) => {
+          setEmailReg(e.target.value);
+        }}></input>
+      </div>
+      <div>
+        <label>Password:</label>
+        <input type="text" class="form-input" onChange={(e) => {
+          setPasswordReg(e.target.value);
+        }}></input>
+      </div>
+      <div>
+        <button class="form-button" onClick={ superAdminRegister }>Register as SuperAdmin</button>
+      </div>
+      <button class="form-button" onClick={()=>navigate('/')}>To Login Page</button>
+      <button class="form-button" onClick={()=>navigate('/registerStudent')}>Student Account Registration</button>
+    </div>
     );
 }
 
