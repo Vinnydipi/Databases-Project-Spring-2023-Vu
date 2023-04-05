@@ -1,0 +1,39 @@
+.eventTableWrapper
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.eventTable
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 80%;
+    border: 1px solid grey;
+    table-layout: fixed;
+    margin: 0 auto;
+}
+
+.eventTable td
+{
+    padding: 8px;
+    border: 1px solid grey;
+    text-align: center;
+}
+
+.eventTable th
+{
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #f2f2f2;
+    border: 1px solid grey;
+    padding: 20px;
+}

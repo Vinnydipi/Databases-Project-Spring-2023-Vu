@@ -8,7 +8,7 @@ import { UserContext } from './pages/utils/UserContext';
 import Login from './pages/login/login';
 // SuperAdmin Pages
 import RegisterSuperAdmin from './pages/register/registerSuperAdmin';
-import CreateEvent from './pages/accountType/superAdminPages/createEvent';
+import CreateEvent from './pages/accountType/superAdminPages/components/createEvent';
 import SuperAdminHome from './pages/accountType/superAdminPages/home/superAdminHome';
 // Admin Pages
 
