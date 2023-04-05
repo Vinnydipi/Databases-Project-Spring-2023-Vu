@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './login.css';
+
 
 function Login()
 {
@@ -72,31 +74,37 @@ function Login()
 
     // HTML FOR THE FILE
     return (
-        <div className='login'>
-          <h2>LOGIN</h2>
-          <div>
-            <label>Username:</label>
-            <input type="text"
-            onChange={(e) => 
-            {
-              setUsername(e.target.value);
-            }}></input>
-          </div>
-          <div>
-            <label>Password:</label>
-            <input type="text"
-            onChange={(e) => 
-            {
-              setPassword(e.target.value);
-            }}></input>
-          </div>
-          <div>
-            <button onClick={()=>navigate('/registerStudent')}>Register Student Account</button>
-            <button onClick={()=>navigate('/registerSuperAdmin')}>Register Superadmin Account</button>
-          </div>
-          <button onClick={ login }>Login</button>
-          { isLoggedIn && 'User Logged in Rerouting'}
-        </div>
+      <div className="login">
+      <h2>LOGIN</h2>
+      <div>
+        <label>Username:</label>
+        <input
+          type="text"
+          onChange={(e) => {
+            setUsername(e.target.value);
+          }}
+        />
+      </div>
+      <div>
+        <label>Password:</label>
+        <input
+          type="password"
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+        />
+      </div>
+      <div>
+        <button onClick={() => navigate("/registerStudent")}>
+          Register Student Account
+        </button>
+        <button onClick={() => navigate("/registerSuperAdmin")}>
+          Register Superadmin Account
+        </button>
+      </div>
+      <button onClick={login}>Login</button>
+      {isLoggedIn && "User Logged in Rerouting"}
+    </div>
     );
 }
 
