@@ -13,14 +13,14 @@ import '../style/studentHome.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
+// Importing the review Form
+import ReviewForm from '../components/reviewForm';
+
 function StudentHome()
 {
-
     // Used to navigate around the web app
     const navigate = useNavigate();
 
-    // Getting userType
-    const userType = useContext(UserContext);
     // This is for testing CSS purposes(Delete once backend is working!)
     const test = [
         {
@@ -37,10 +37,23 @@ function StudentHome()
         }
     ]
 
-    // check boxes
+    // Check boxes, set to true so every event is shown when first loaded
     const [checkedPrivate, setCheckedPrivate] = useState(true);
     const [checkedPublic, setCheckedPublic] = useState(true);
     const [checkedRSO, setCheckedRSO] = useState(true);
+    // Used to open the review page, only true when user is uploading a review
+    const [showReviewForm, setShowReviewForm] = useState(false);
+
+    // Function to open the review page
+    const handleOpenReview = () =>
+    {
+        setShowReviewForm(true);
+    }
+    // Function to close the review page
+    const handleCloseReviewForm = () =>
+    {
+        setShowReviewForm(false);
+    }
 
     // Handles for each checkBox 
     // The '!' negates the current value, so !true = false and !false = true
@@ -59,7 +72,7 @@ function StudentHome()
 
     // This array will hold all the events that the user
     // wished to view on the studentHomePage
-    let events = [];
+    let eventsArray = [];
 
     useEffect(() =>
     {  
@@ -71,7 +84,7 @@ function StudentHome()
 
 return(
 
-    <div className="superAdminEvents">
+    <div className="studentHomePage">
             {/* page title */}
             STUDENT HOME PAGE
         <div className="navigationButtons">
@@ -104,6 +117,12 @@ return(
             </span>
         </div>
             <div className="eventTableWrapper">
+                {/* Rendering the Review Form on/off */}
+                {showReviewForm && 
+                (
+                    <ReviewForm onClose={ handleCloseReviewForm }/>
+                    // onSubmit= { handleReviewSubmit }/>
+                )}
                 <div className="eventTable">
                     <table>
                         <thead>
@@ -112,7 +131,7 @@ return(
                                 <th>Time</th>
                                 <th>Location</th>
                                 <th>Private/Public/Rso</th>
-                                <th>Rate Event</th>
+                                <th>Review Event</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -123,7 +142,8 @@ return(
                                     <td>{event.location}</td>
                                     <td>{event.type}</td>
                                     <td>
-                                        <button>Rate</button>
+                                        <button onClick={() => 
+                                            handleOpenReview()}>Review</button>
                                     </td>
                                 </tr>
                             ))}
