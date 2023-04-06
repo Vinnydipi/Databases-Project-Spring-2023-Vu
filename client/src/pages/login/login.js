@@ -58,6 +58,10 @@ function Login()
             setLoginStatus(user.username);
             setIsLoggedIn(true);
 
+            // Store the current user's username in session storage
+            // to access in other files
+            sessionStorage.setItem('curUser', user.username);
+
             // Now check the userType and redirect accordingly
             const userType = user.userType;
             const nextPage = userTypeToPage[userType];

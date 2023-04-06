@@ -16,7 +16,7 @@
     border-collapse: collapse;
     width: 100%;
     max-width: 80%;
-    border: 1px solid grey;
+    border: 1px solid black;
     table-layout: fixed;
     margin: 0 auto;
 }
@@ -24,8 +24,9 @@
 .eventTable td
 {
     padding: 8px;
-    border: 1px solid grey;
+    border: 1px solid black;
     text-align: center;
+    max-width: 200px;
 }
 
 .eventTable th
@@ -34,6 +35,6 @@
     font-weight: bold;
     text-align: center;
     background-color: #f2f2f2;
-    border: 1px solid grey;
+    border: 1px solid black;
     padding: 20px;
 }
