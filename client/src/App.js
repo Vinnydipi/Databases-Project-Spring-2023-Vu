@@ -49,7 +49,7 @@ function App()
             <Route path="/superAdminHome" element={ loginStatus ? <SuperAdminHome /> : <Login setLoginStatus={ setLoginStatus } /> } />
             <Route path="/createEvent" element={ loginStatus ? <CreateEvent /> : <Login setLoginStatus={ setLoginStatus } /> } />
             {/*Routes For Student*/}
-            <Route path ="/studentHome" element={ loginStatus ? <StudentHome /> : <Login setLoginStatus={ setLoginStatus } /> } />
+            <Route path ="/studentHome" element={ loginStatus ? <StudentHome loginStatus={ loginStatus } /> : <Login setLoginStatus={ setLoginStatus } /> } />
           </Routes>
         </BrowserRouter>
       </UserContext.Provider>

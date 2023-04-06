@@ -1,0 +1,22 @@
+.reviewForm
+{
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    height: 50%;
+    max-width: 500px;
+    background-color: white;
+    border: 1px solid black;
+    padding: 20px; 
+}
+
+.exitButton
+{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 5px;
+}
