@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
-    db.query("SELECT username, password, userType FROM users WHERE username = ? AND password = ?",
+    db.query("SELECT * FROM users WHERE username = ? AND password = ?",
     [username, password], (err, result) => {
         if (err)
             res.send({err: err});
@@ -35,8 +35,7 @@ router.post('/', (req, res) => {
         }
         else
             res.send({message: "Wrong username/password"});
-    }
-   );
+    });
 });
 
 module.exports = router;

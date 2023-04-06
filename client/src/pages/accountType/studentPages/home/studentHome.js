@@ -2,7 +2,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
-import { UserContext } from '../../../utils/UserContext';
 
 // Importing the logout feature
 import { logout } from '../../../components/logout';
@@ -16,10 +15,13 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 // Importing the review Form
 import ReviewForm from '../components/reviewForm';
 
-function StudentHome()
+function StudentHome(props)
 {
     // Used to navigate around the web app
     const navigate = useNavigate();
+
+    // Getting the logged in user's username
+    const { loginStatus } = props;
 
     // This is for testing CSS purposes(Delete once backend is working!)
     const test = [
@@ -43,12 +45,20 @@ function StudentHome()
     const [checkedRSO, setCheckedRSO] = useState(true);
     // Used to open the review page, only true when user is uploading a review
     const [showReviewForm, setShowReviewForm] = useState(false);
+    // Event Name for the review Form
+    const [selectedEventName, setSelectedEventName] = useState('');
+    // Getting the userName of currently logged in account
+    const [curUserName, setCurUserName] = useState('');
 
     // Function to open the review page
-    const handleOpenReview = () =>
+    const handleOpenReview = (eventName) =>
     {
         setShowReviewForm(true);
+        // Sends the eventName to the reviewForm
+        setSelectedEventName(eventName);
+        setCurUserName(loginStatus);
     }
+
     // Function to close the review page
     const handleCloseReviewForm = () =>
     {
@@ -73,14 +83,6 @@ function StudentHome()
     // This array will hold all the events that the user
     // wished to view on the studentHomePage
     let eventsArray = [];
-
-    useEffect(() =>
-    {  
-        console.log("Is Private: " + checkedPrivate);
-        console.log("Is Public: " + checkedPublic);
-        console.log("Is RSO: " + checkedRSO);
-
-    }, [checkedPrivate, checkedPublic, checkedRSO]);
 
 return(
 
@@ -119,9 +121,7 @@ return(
             <div className="eventTableWrapper">
                 {/* Rendering the Review Form on/off */}
                 {showReviewForm && 
-                (
-                    <ReviewForm onClose={ handleCloseReviewForm }/>
-                    // onSubmit= { handleReviewSubmit }/>
+                (<ReviewForm onClose={ handleCloseReviewForm } eventName={ selectedEventName } curUser={ curUserName }/>
                 )}
                 <div className="eventTable">
                     <table>
@@ -136,14 +136,14 @@ return(
                         </thead>
                         <tbody>
                             {test.map( event => (
-                                <tr key ={test.name}>
+                                <tr key ={event.name}>
                                     <td>{event.name}</td>
                                     <td>{event.time}</td>
                                     <td>{event.location}</td>
                                     <td>{event.type}</td>
                                     <td>
                                         <button onClick={() => 
-                                            handleOpenReview()}>Review</button>
+                                            handleOpenReview(event.name, )}>Review</button>
                                     </td>
                                 </tr>
                             ))}
