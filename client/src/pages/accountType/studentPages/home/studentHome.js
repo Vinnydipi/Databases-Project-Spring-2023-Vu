@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 
@@ -15,29 +15,10 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 // Importing the review Form
 import ReviewForm from '../components/reviewForm';
 
-function StudentHome(props)
+function StudentHome()
 {
     // Used to navigate around the web app
     const navigate = useNavigate();
-
-    // Getting the logged in user's username
-    const { loginStatus } = props;
-
-    // This is for testing CSS purposes(Delete once backend is working!)
-    const test = [
-        {
-            name: 'event 1',
-            time: '10am',
-            location: 'Orladno',
-            type: 'private'
-        },
-        {
-            name: 'event 2',
-            time: '5:00 pm',
-            location: 'Gville',
-            type: 'public'
-        }
-    ]
 
     // Check boxes, set to true so every event is shown when first loaded
     const [checkedPrivate, setCheckedPrivate] = useState(true);
@@ -45,26 +26,20 @@ function StudentHome(props)
     const [checkedRSO, setCheckedRSO] = useState(true);
     // Used to open the review page, only true when user is uploading a review
     const [showReviewForm, setShowReviewForm] = useState(false);
-    // Event Name for the review Form
-    const [selectedEventName, setSelectedEventName] = useState('');
-    // Getting the userName of currently logged in account
-    const [curUserName, setCurUserName] = useState('');
+    // Used to hold the events
+    const [eventList, setEventList] = useState([]);
 
     // Function to open the review page
-    const handleOpenReview = (eventName) =>
+    const handleOpenReview = (event) =>
     {
         setShowReviewForm(true);
-        // Sends the eventName to the reviewForm
-        setSelectedEventName(eventName);
-        setCurUserName(loginStatus);
+        sessionStorage.setItem('curEvent', event);
     }
-
     // Function to close the review page
     const handleCloseReviewForm = () =>
     {
         setShowReviewForm(false);
     }
-
     // Handles for each checkBox 
     // The '!' negates the current value, so !true = false and !false = true
     const handleCheckedPrivate = () =>
@@ -80,12 +55,15 @@ function StudentHome(props)
         setCheckedRSO(!checkedRSO);
     }
 
-    // This array will hold all the events that the user
-    // wished to view on the studentHomePage
-    let eventsArray = [];
+    // useEffect to get all the events information from the backend and
+    // display them in the table
+    useEffect(() => {
+        Axios.get('http://localhost:3001/studentHome').then((response) =>{
+            setEventList(response.data);
+        })
+    }, []);
 
 return(
-
     <div className="studentHomePage">
             {/* page title */}
             STUDENT HOME PAGE
@@ -121,29 +99,43 @@ return(
             <div className="eventTableWrapper">
                 {/* Rendering the Review Form on/off */}
                 {showReviewForm && 
-                (<ReviewForm onClose={ handleCloseReviewForm } eventName={ selectedEventName } curUser={ curUserName }/>
+                (<ReviewForm onClick={ handleCloseReviewForm }/>
                 )}
                 <div className="eventTable">
                     <table>
                         <thead>
                             <tr>
                                 <th>Event Name</th>
+                                <th>Category</th>
+                                <th>Description</th>
                                 <th>Time</th>
-                                <th>Location</th>
-                                <th>Private/Public/Rso</th>
+                                <th>Contact Number</th>
+                                <th>Contact Email</th>
+                                <th>isApproved</th>
+                                <th>isPrivate</th>
+                                <th>Host RSO</th>
+                                <th>long.</th>
+                                <th>lat.</th>
                                 <th>Review Event</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {test.map( event => (
-                                <tr key ={event.name}>
-                                    <td>{event.name}</td>
-                                    <td>{event.time}</td>
-                                    <td>{event.location}</td>
-                                    <td>{event.type}</td>
+                            {eventList.map( (val) => (
+                                <tr key={val.eventId}>
+                                    <td>{val.name}</td>
+                                    <td>{val.category}</td>
+                                    <td>{val.description}</td>
+                                    <td>{val.time}</td>
+                                    <td>{val.contactPhone}</td> 
+                                    <td>{val.contactEmail}</td>
+                                    <td>{val.isApproved === 0 ? "Pending Approval" : "Active"}</td>
+                                    <td>{val.isPrivate === 1 ? "Private" : "Public"}</td>
+                                    <td>{val.hostRso}</td>
+                                    <td>{val.longitude}</td>
+                                    <td>{val.latitude}</td>
                                     <td>
                                         <button onClick={() => 
-                                            handleOpenReview(event.name, )}>Review</button>
+                                            handleOpenReview(val.name)}>Review</button>
                                     </td>
                                 </tr>
                             ))}

@@ -1,23 +1,33 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 
 // Importing styling
 import '../style/reviewForm.css';
 
 // Passes the eventName for the h1 header!
-function ReviewForm( {eventName, curUser})
+function ReviewForm()
 {
+
+    // Used to navigate around the web app
+    const navigate = useNavigate();
+    // Refreshing the page
+    const refresh = () => window.location.reload(true);
+
     // Setting the rating/review variables to empty with useState
     const [rating, setRating] = useState(1);
     const [review, setReview] = useState('');
+
+    // Setting the userName = to a variable to use later
+    const curUserName = sessionStorage.getItem('curUser');
+    const curEvent = sessionStorage.getItem('curEvent');
 
     // Testing purposes, delete later
     useEffect(() => {
         console.log('Rating:', rating);
         console.log('Review:', review);
-        console.log('CurUser:' + curUser);
-    }, [rating, review, curUser]);
+    }, [rating, review]);
 
     // Submit the form information to the backend
     const submitReview = () =>
@@ -26,7 +36,6 @@ function ReviewForm( {eventName, curUser})
         Axios.post('http://localhost:3001/studentHome', {
             rating: rating,
             review: review,
-            user: curUser,
         }).then(() =>
         {
             alert('Review Submitted');
@@ -40,9 +49,14 @@ function ReviewForm( {eventName, curUser})
         <div className="reviewForm">
             <form>
                 <div className="reviewFormHeader">
-                    <h1>Reviewing { eventName } </h1>
-                    <button className="exitButton">X</button>
-                    {/* <h1>Reviewing EventName</h1> */}
+                    <h1>Reviewing { curEvent } </h1>
+                    <p>User Creating Review: { curUserName } </p>
+                    <button className="exitButton" type="button"
+                            onClick={() => {
+                                sessionStorage.removeItem('curEvent');
+                                refresh();
+                            }}
+                    >X</button>
                 </div>
                 <label>Rating:</label>
                 <select onChange={(e) => {
