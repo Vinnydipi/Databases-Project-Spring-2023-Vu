@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './registerStudent.css';
 
 function RegisterStudent() 
 {
@@ -32,32 +31,37 @@ function RegisterStudent()
 
     // HTML FOR THE FILE 
     return (
-      <div className='login'>
-      <h2>Student Registration</h2>
-      <div>
-        <label>Username:</label>
-        <input type="text" onChange={(e) => {
-          setUsernameReg(e.target.value);
-        }}></input>
-      </div>
-      <div>
-        <label>Email:</label>
-        <input type="text" onChange={(e) => {
-          setEmailReg(e.target.value);
-        }}></input>
-      </div>
-      <div>
-        <label>Password:</label>
-        <input type="text" onChange={(e) => {
-          setPasswordReg(e.target.value);
-        }}></input>
-      </div>
-      <div>
-        <button onClick={ studentRegister }>Register as Student</button>
-      </div>
-      <button onClick={()=>navigate('/')}>To Login Page</button>
-      <button onClick={()=>navigate('/registerSuperAdmin')}>Superadmin Account Registration</button>
-    </div>
+          <div className='registration'>
+          <h1>Student Registration</h1>
+            <div>
+              <label>Username:</label>
+              <input type="text"
+              onChange={(e) => {
+                setUsernameReg(e.target.value);
+                }}></input>
+            </div>
+            <div>
+              <label>Email:</label>
+              <input 
+              type="text"
+              onChange={(e) => {
+                setEmailReg(e.target.value);
+                }}></input>
+            </div>
+            <div>
+              <label>Password:</label>
+              <input 
+              type="text"
+              onChange={(e) => {
+                setPasswordReg(e.target.value);
+                }}></input>
+            </div>
+            <div>
+              <button onClick={ studentRegister }>Register as Student</button>
+            </div>
+            <button onClick={()=>navigate('/')}>To Login Page</button>
+            <button onClick={()=>navigate('/registerSuperAdmin')}>Superadmin Account Registration</button>
+          </div>
     );
 }
 
