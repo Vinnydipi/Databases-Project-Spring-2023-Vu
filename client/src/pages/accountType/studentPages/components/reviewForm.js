@@ -32,7 +32,6 @@ function ReviewForm()
     // Submit the form information to the backend
     const submitReview = () =>
     {
-
         Axios.post('http://localhost:3001/studentHome', {
             rating: rating,
             review: review,
