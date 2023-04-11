@@ -8,9 +8,6 @@ import { logout } from '../../../components/logout';
 
 // Importing styling
 import '../style/studentHome.css';
-// For the check box...idk man
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 // Importing the review Form
 import ReviewForm from '../components/reviewForm';
@@ -24,10 +21,14 @@ function StudentHome()
     const [checkedPrivate, setCheckedPrivate] = useState(true);
     const [checkedPublic, setCheckedPublic] = useState(true);
     const [checkedRSO, setCheckedRSO] = useState(true);
+    // Default (All are true)
+    const [defaultView, setDefaultView] = useState(true);
     // Used to open the review page, only true when user is uploading a review
     const [showReviewForm, setShowReviewForm] = useState(false);
     // Used to hold the events
     const [eventList, setEventList] = useState([]);
+    // For the h1 tag
+    const [h2Tag, setH2Tag] = useState('All');
 
     // Function to open the review page
     const handleOpenReview = (event) =>
@@ -40,111 +41,167 @@ function StudentHome()
     {
         setShowReviewForm(false);
     }
-    // Handles for each checkBox 
-    // The '!' negates the current value, so !true = false and !false = true
+    // Handles for each viewButton
     const handleCheckedPrivate = () =>
     {
-        setCheckedPrivate(!checkedPrivate);
+        // Sets the private to be true
+        setCheckedPrivate(true);
+        setCheckedPublic(false);
+        setCheckedRSO(false);
+        setDefaultView(false);
+        setH2Tag('Pivate');
+        sendData();
     }
     const handleCheckedPublic = () =>
     {
-        setCheckedPublic(!checkedPublic);
+        // Sets the public to be true
+        setCheckedPrivate(false);
+        setCheckedPublic(true);
+        setCheckedRSO(false);
+        setDefaultView(false);
+        setH2Tag('Public');
+        sendData();
     }
     const handleCheckedRSO = () =>
+    {   
+        // Sets the RSO to be true
+        setCheckedPrivate(false);
+        setCheckedPublic(false);
+        setCheckedRSO(true);
+        setDefaultView(false);
+        setH2Tag('RSO');
+        sendData();
+    }
+    const handleDefaultView = () =>
+    {   
+        // Default view brings up all available events
+        setCheckedPrivate(true);
+        setCheckedPublic(true);
+        setCheckedRSO(true);
+        setDefaultView(true);
+        setH2Tag('All');
+        sendData();
+    }
+
+    // Send the data to the backend for the specific view options
+    const sendData = () => 
     {
-        setCheckedRSO(!checkedRSO);
+        console.log('private:' + checkedPrivate);
+        console.log('public:' + checkedPublic);
+        console.log('rso:' + checkedRSO);
+        console.log('all:' + defaultView);
+        console.log('==========');
+
+        // Make a request to the server 
+        Axios.post('http://localhost:3001/studentHome', 
+        {
+            isPrivate: checkedPrivate,
+            isPublic: checkedPublic,
+            isRSO: checkedRSO,
+            isDefault: defaultView,
+        })
+        .then((response) => 
+        {
+            setEventList(response.data);
+        })
+        .catch((error) => 
+        {
+          alert(error.message);
+        });
     }
 
     // useEffect to get all the events information from the backend and
     // display them in the table
-    useEffect(() => {
-        Axios.get('http://localhost:3001/studentHome').then((response) =>{
-            setEventList(response.data);
-        })
-    }, []);
+    // useEffect(() => {
+    //     Axios.get('http://localhost:3001/studentHome').then((response) =>{
+    //         setEventList(response.data);
+    //     })
+    // }, []);
 
-return(
-    <div className="studentHomePage">
-            {/* page title */}
-            STUDENT HOME PAGE
-        <div className="navigationButtons">
-            {/* Logs the user out and returns to the login page*/}
-            <button onClick={ logout }>Logout</button>
-            {/* Navigates to the RSO page */}
-            <button>View RSO's</button>
-        </div>
-        <div className="checkBoxes">
-            {/* INPUT FOR CHECKED PRIVATE BOX */}
-            <input type="checkbox" checked={ checkedPrivate } onChange={ handleCheckedPrivate }/>
-            <span className="privateCheckMark">
-                { checkedPrivate && <FontAwesomeIcon icon={ faCheck }/> }
-                {/* button name */}
-                Private Events
-            </span>
-            {/* INPUT FOR CHECKED PUBLIC BOX */}
-            <input type="checkbox" checked={ checkedPublic } onChange={ handleCheckedPublic }/>
-            <span className="privateCheckMark">
-                { checkedPublic && <FontAwesomeIcon icon={ faCheck }/> }
-                {/* button name */}
-                Public Events
-            </span>
-            {/* INPUT FOR CHECKED RSO BOX  */}
-            <input type="checkbox" checked={ checkedRSO } onChange={ handleCheckedRSO }/>
-            <span className="privateCheckMark">
-                { checkedRSO && <FontAwesomeIcon icon={ faCheck }/> }
-                {/* button name */}
-                RSO Events
-            </span>
-        </div>
-            <div className="eventTableWrapper">
+    return (
+        <div className="studentHomePage">
+          {/* page title */}
+          <h1>STUDENT HOME PAGE</h1>
+          <div className="mainContainer">
+            <div className="navigationButtons">
+              {/* Logs the user out and returns to the login page*/}
+              <button onClick={logout}>Logout</button>
+              {/* Navigates to the RSO page */}
+              <button>View RSO's</button>
+            </div>
+            <div className="viewContainer">
+                <div className="viewButtons">
+                    <h2>View Options</h2>
+                    <button className={checkedPrivate ? 'Active' : ''}
+                        onClick={handleCheckedPrivate}>
+                        Private Events
+                    </button>
+                    <button className={checkedPublic ? 'Active' : ''}
+                        onClick={handleCheckedPublic}>
+                        Public Events
+                    </button>
+                    <button className={checkedRSO ? 'Active' : ''}
+                        onClick={handleCheckedRSO}>
+                        RSO Events
+                    </button>
+                    <button className={defaultView ? 'Active' : ''}
+                        onClick={handleDefaultView}>
+                        All Events
+                    </button>
+                </div>
+              <div className="eventTableWrapper">
                 {/* Rendering the Review Form on/off */}
-                {showReviewForm && 
-                (<ReviewForm onClick={ handleCloseReviewForm }/>
+                {showReviewForm && (
+                  <ReviewForm onClick={handleCloseReviewForm} />
                 )}
                 <div className="eventTable">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Event Name</th>
-                                <th>Category</th>
-                                <th>Description</th>
-                                <th>Time</th>
-                                <th>Contact Number</th>
-                                <th>Contact Email</th>
-                                <th>isApproved</th>
-                                <th>isPrivate</th>
-                                <th>Host RSO</th>
-                                <th>long.</th>
-                                <th>lat.</th>
-                                <th>Review Event</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {eventList.map( (val) => (
-                                <tr key={val.eventId}>
-                                    <td>{val.name}</td>
-                                    <td>{val.category}</td>
-                                    <td>{val.description}</td>
-                                    <td>{val.time}</td>
-                                    <td>{val.contactPhone}</td> 
-                                    <td>{val.contactEmail}</td>
-                                    <td>{val.isApproved === 0 ? "Pending Approval" : "Active"}</td>
-                                    <td>{val.isPrivate === 1 ? "Private" : "Public"}</td>
-                                    <td>{val.hostRso}</td>
-                                    <td>{val.longitude}</td>
-                                    <td>{val.latitude}</td>
-                                    <td>
-                                        <button onClick={() => 
-                                            handleOpenReview(val.name)}>Review</button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                  <h2>Viewing {h2Tag} Events</h2>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Event Name</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>Date/Time</th>
+                        <th>Contact Number</th>
+                        <th>Contact Email</th>
+                        <th>isApproved</th>
+                        <th>isPrivate</th>
+                        <th>Host RSO</th>
+                        <th>long.</th>
+                        <th>lat.</th>
+                        <th>Review Event</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {eventList.map((val) => (
+                        <tr key={val.eventId}>
+                          <td>{val.name}</td>
+                          <td>{val.category}</td>
+                          <td>{val.description}</td>
+                          <td>{val.time}</td>
+                          <td>{val.contactPhone}</td>
+                          <td>{val.contactEmail}</td>
+                          <td>{val.isApproved === 0 ? 'Pending Approval' : 'Active'}</td>
+                          <td>{val.isPrivate === 1 ? 'Private' : 'Public'}</td>
+                          <td>{val.hostRso}</td>
+                          <td>{val.longitude}</td>
+                          <td>{val.latitude}</td>
+                          <td>
+                            <button onClick={() =>
+                              handleOpenReview(val.name)}>Review</button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    );
+      );
+      
 }
 
 export default StudentHome;
