@@ -3,14 +3,20 @@ const db = require('../../../connection');
 
 const router = express.Router();
 
-router.get('/', (req, res) => 
+router.post('/', (req, res) => 
 {
-    const sqlSelect = 'SELECT * FROM events';
+    // Getting the data from the front end for which events to display
+    const showPublic = req.body.isPublic;
+    const showPrivate = req.body.isPrivate;
+    const showRso = req.body.isRSO;
+    const showAll = req.body.isDefault;
 
-    db.query(sqlSelect, (err, result) => 
-    {
-        res.send(result);
-    });
+    console.log('showPublic:', showPublic);
+    console.log('showPrivate:', showPrivate);
+    console.log('showRso:', showRso);
+    console.log('showAll:', showAll);
+
+
 });
 
 module.exports = router;
