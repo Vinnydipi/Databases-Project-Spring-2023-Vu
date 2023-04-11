@@ -61,6 +61,8 @@ function Login()
             // Store the current user's username in session storage
             // to access in other files
             sessionStorage.setItem('curUser', user.username);
+            sessionStorage.setItem('userEmail', user.email);
+            sessionStorage.setItem('id', user.idNum);
 
             // Now check the userType and redirect accordingly
             const userType = user.userType;

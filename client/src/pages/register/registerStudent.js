@@ -21,7 +21,7 @@ function RegisterStudent()
         email: emailReg,
         userType: 'student',
         }).then(() => {
-        alert('Successful insert');
+          alert('Successful insert');
         })
         .catch((error) =>
         {

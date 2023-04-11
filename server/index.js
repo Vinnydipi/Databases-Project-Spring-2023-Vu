@@ -44,7 +44,7 @@ app.use(
 
 // Routes
 // Student Pages
-app.use('/studentHome', reviewForm);
+// app.use('/studentHome', reviewForm);
 app.use('/studentHome', displayEvents);
 // Register page
 app.use('/registerStudent', registerStudentRouter);

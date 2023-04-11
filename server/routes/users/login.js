@@ -31,7 +31,8 @@ router.post('/', (req, res) => {
             req.session.user = result;
             console.log(req.session.user);
             res.send({ username: result[0].username, password: result[0].password,
-                        userType: result[0].userType });
+                        userType: result[0].userType, email: result[0].email,
+                        idNum: result[0].userId});
         }
         else
             res.send({message: "Wrong username/password"});

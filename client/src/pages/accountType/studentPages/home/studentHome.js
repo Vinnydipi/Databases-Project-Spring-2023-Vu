@@ -17,12 +17,8 @@ function StudentHome()
     // Used to navigate around the web app
     const navigate = useNavigate();
 
-    // Check boxes, set to true so every event is shown when first loaded
-    const [checkedPrivate, setCheckedPrivate] = useState(true);
-    const [checkedPublic, setCheckedPublic] = useState(true);
-    const [checkedRSO, setCheckedRSO] = useState(true);
-    // Default (All are true)
-    const [defaultView, setDefaultView] = useState(true);
+	// useState for holding what type of events the user wants shown
+	const [viewOption, setViewOption] = useState('public');
     // Used to open the review page, only true when user is uploading a review
     const [showReviewForm, setShowReviewForm] = useState(false);
     // Used to hold the events
@@ -41,82 +37,50 @@ function StudentHome()
     {
         setShowReviewForm(false);
     }
-    // Handles for each viewButton
-    const handleCheckedPrivate = () =>
-    {
-        // Sets the private to be true
-        setCheckedPrivate(true);
-        setCheckedPublic(false);
-        setCheckedRSO(false);
-        setDefaultView(false);
-        setH2Tag('Pivate');
-        sendData();
-    }
-    const handleCheckedPublic = () =>
-    {
-        // Sets the public to be true
-        setCheckedPrivate(false);
-        setCheckedPublic(true);
-        setCheckedRSO(false);
-        setDefaultView(false);
-        setH2Tag('Public');
-        sendData();
-    }
-    const handleCheckedRSO = () =>
-    {   
-        // Sets the RSO to be true
-        setCheckedPrivate(false);
-        setCheckedPublic(false);
-        setCheckedRSO(true);
-        setDefaultView(false);
-        setH2Tag('RSO');
-        sendData();
-    }
-    const handleDefaultView = () =>
-    {   
-        // Default view brings up all available events
-        setCheckedPrivate(true);
-        setCheckedPublic(true);
-        setCheckedRSO(true);
-        setDefaultView(true);
-        setH2Tag('All');
-        sendData();
-    }
 
     // Send the data to the backend for the specific view options
-    const sendData = () => 
-    {
-        console.log('private:' + checkedPrivate);
-        console.log('public:' + checkedPublic);
-        console.log('rso:' + checkedRSO);
-        console.log('all:' + defaultView);
-        console.log('==========');
+    // const sendData = (event) => 
+    // {
+	// 	event.preventDefault();// Prevents the page from refreshing
+	// 	const userEmail = sessionStorage.getItem('userEmail');
 
-        // Make a request to the server 
-        Axios.post('http://localhost:3001/studentHome', 
-        {
-            isPrivate: checkedPrivate,
-            isPublic: checkedPublic,
-            isRSO: checkedRSO,
-            isDefault: defaultView,
-        })
-        .then((response) => 
-        {
-            setEventList(response.data);
-        })
-        .catch((error) => 
-        {
-          alert(error.message);
-        });
-    }
+    //     // Make a request to the server 
+    //     Axios.post('http://localhost:3001/studentHome', 
+    //     {
+	// 		choice: viewOption,
+	// 		email: userEmail,
+    //     })
+    //     .then(() => {
+	// 		alert('Updating Event List');
+	// 	})
+    //     .catch((error) => 
+    //     {
+    //       alert(error.message);
+    //     });
+    // }
+
+
 
     // useEffect to get all the events information from the backend and
     // display them in the table
-    // useEffect(() => {
-    //     Axios.get('http://localhost:3001/studentHome').then((response) =>{
-    //         setEventList(response.data);
-    //     })
-    // }, []);
+    useEffect(() => {
+		// User information needed in the backend
+        const userEmail = sessionStorage.getItem('userEmail');
+		const userId = sessionStorage.getItem('id');
+
+		Axios.post('http://localhost:3001/studentHome',
+		{
+			choice: viewOption,
+			email: userEmail,
+			userId: userId,
+		})
+		.then((response) => {
+			setEventList(response.data);
+		})
+		.catch((error) => {
+			alert(error.message);
+		})
+    }, [viewOption]);
 
     return (
         <div className="studentHomePage">
@@ -129,30 +93,43 @@ function StudentHome()
               {/* Navigates to the RSO page */}
               <button>View RSO's</button>
             </div>
-            <div className="viewContainer">
-                <div className="viewButtons">
-                    <h2>View Options</h2>
-                    <button className={checkedPrivate ? 'Active' : ''}
-                        onClick={handleCheckedPrivate}>
-                        Private Events
-                    </button>
-                    <button className={checkedPublic ? 'Active' : ''}
-                        onClick={handleCheckedPublic}>
-                        Public Events
-                    </button>
-                    <button className={checkedRSO ? 'Active' : ''}
-                        onClick={handleCheckedRSO}>
-                        RSO Events
-                    </button>
-                    <button className={defaultView ? 'Active' : ''}
-                        onClick={handleDefaultView}>
-                        All Events
-                    </button>
-                </div>
+			{/* Handles updating which events are shown */}
+			<form>
+				<div className="viewContainer">
+					<div className="viewButtons">
+						<h3>View Options</h3>
+						<label>
+							<input type="radio" name="eventType"
+									value="private" checked={ viewOption === 'private' }
+									onChange={(e) => {
+										setViewOption(e.target.value);
+										}}/>
+								Private Events
+						</label>
+						<label>
+							<input type="radio" name="eventType"
+									value="rso" checked={ viewOption === 'rso' }
+									onChange={(e) => {
+										setViewOption(e.target.value);
+									}}/>
+								RSO Events
+						</label>
+						<label>
+							<input type="radio" name="eventType"
+									value="public" checked={ viewOption === 'public' }
+									onChange={(e) => {
+										setViewOption(e.target.value);
+									}}/>
+							Public Events
+						</label>
+					</div>
+					{/* <button type="submit" onClick={ sendData }>Apply</button> */}
+				</div>
+			</form>
               <div className="eventTableWrapper">
                 {/* Rendering the Review Form on/off */}
                 {showReviewForm && (
-                  <ReviewForm onClick={handleCloseReviewForm} />
+                  <ReviewForm onClick={ handleCloseReviewForm } />
                 )}
                 <div className="eventTable">
                   <h2>Viewing {h2Tag} Events</h2>
@@ -197,7 +174,6 @@ function StudentHome()
                   </table>
                 </div>
               </div>
-            </div>
           </div>
         </div>
       );
