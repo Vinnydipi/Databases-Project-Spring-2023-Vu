@@ -22,7 +22,7 @@ function getQuery(option, domain, ID)
     if (option === 'public')
     {
         // This is where only public events will be shown (default option)
-        sqlGetEvents = "SELECT * FROM events WHERE rsoID = 2 AND isPrivate = 0";
+        sqlGetEvents = "SELECT * FROM events WHERE rsoID = 2 AND isPrivate = 0 AND hostRso = 'NONE'";
     }
     if (option === 'private')
     {
@@ -69,8 +69,5 @@ router.post('/', (req, res) =>
         }
     })
 });
-
-    // GET request
-    // router.get('/', (req, res) => {})
 
 module.exports = router;

@@ -15,6 +15,7 @@ import SuperAdminHome from './pages/accountType/superAdminPages/home/superAdminH
 // Student Pages
 import StudentHome from './pages/accountType/studentPages/home/studentHome';
 import RegisterStudent from './pages/register/registerStudent';
+import ReviewForm from './pages/accountType/studentPages/components/reviewForm';
 
 function App() 
 {    
@@ -42,14 +43,15 @@ function App()
         <BrowserRouter>
           <Routes>
             {/*Misc. Routes*/}
-            <Route path="/" element={<Login setLoginStatus={ setLoginStatus } />} />
-            <Route path="/registerStudent" element={<RegisterStudent />} />
-            <Route path="/registerSuperAdmin" element={<RegisterSuperAdmin />} />
+            <Route path="/" element={<Login setLoginStatus={ setLoginStatus }/>}/>
+            <Route path="/registerStudent" element={<RegisterStudent/>}/>
+            <Route path="/registerSuperAdmin" element={<RegisterSuperAdmin/>}/>
             {/*Routes For Super Admin*/}
-            <Route path="/superAdminHome" element={ loginStatus ? <SuperAdminHome /> : <Login setLoginStatus={ setLoginStatus } /> } />
-            <Route path="/createEvent" element={ loginStatus ? <CreateEvent /> : <Login setLoginStatus={ setLoginStatus } /> } />
+            <Route path="/superAdminHome" element={ loginStatus ? <SuperAdminHome/> : <Login setLoginStatus={ setLoginStatus }/> }/>
+            <Route path="/createEvent" element={ loginStatus ? <CreateEvent/> : <Login setLoginStatus={ setLoginStatus }/> }/>
             {/*Routes For Student*/}
-            <Route path ="/studentHome" element={ loginStatus ? <StudentHome loginStatus={ loginStatus } /> : <Login setLoginStatus={ setLoginStatus } /> } />
+            <Route path="/studentHome" element={ loginStatus ? <StudentHome loginStatus={ loginStatus }/> : <Login setLoginStatus={ setLoginStatus }/> }/>
+            <Route path="/studentHome/ReviewForm" element={ loginStatus ? <ReviewForm loginStatus={ loginStatus }/> : <Login setLoginStatus={ setLoginStatus }/> }/>
           </Routes>
         </BrowserRouter>
       </UserContext.Provider>

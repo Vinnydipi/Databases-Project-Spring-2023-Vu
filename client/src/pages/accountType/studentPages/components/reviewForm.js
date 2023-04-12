@@ -6,80 +6,90 @@ import Axios from 'axios';
 // Importing styling
 import '../style/reviewForm.css';
 
+// Logout feature
+import { logout } from '../../../components/logout';
+
 // Passes the eventName for the h1 header!
 function ReviewForm()
 {
-
     // Used to navigate around the web app
     const navigate = useNavigate();
     // Refreshing the page
     const refresh = () => window.location.reload(true);
 
-    // Setting the rating/review variables to empty with useState
-    const [rating, setRating] = useState(1);
+    // Setting the userName = to a variable to use later
+    const userId = sessionStorage.getItem('id');
+    // Gets the eventName in DB
+    const curEvent = sessionStorage.getItem('curEvent');
+    // Gets the eventId in DB
+    const eventId = sessionStorage.getItem('eventId'); 
+    // Set the useStates for review and rate
+    const [rate, setRate] = useState(1);
     const [review, setReview] = useState('');
 
-    // Setting the userName = to a variable to use later
-    const curUserName = sessionStorage.getItem('curUser');
-    const curEvent = sessionStorage.getItem('curEvent');
-
-    // Testing purposes, delete later
-    useEffect(() => {
-        console.log('Rating:', rating);
-        console.log('Review:', review);
-    }, [rating, review]);
-
-    // Submit the form information to the backend
-    const submitReview = () =>
+    const handleSubmit = () =>
     {
-        Axios.post('http://localhost:3001/studentHome', {
-            rating: rating,
-            review: review,
-        }).then(() =>
-        {
-            alert('Review Submitted');
-        }).catch((error) => 
-        {
-            alert(error.message);
-        });
-    };
+        Axios.post('http://localhost:3001/studentHome/reviewForm', {
+                eventId: eventId,
+                userId: userId,
+                rate: rate,
+                review: review,
+            }).then((response) => 
+            {
+                console.log(response.data);
+            })
+            .catch((error) => 
+            {
+                console.log(error);
+            })
+    }
 
     return (
-        <div className="reviewForm">
-            <form>
-                <div className="reviewFormHeader">
-                    <h1>Reviewing { curEvent } </h1>
-                    <p>User Creating Review: { curUserName } </p>
-                    <button className="exitButton" type="button"
-                            onClick={() => {
-                                sessionStorage.removeItem('curEvent');
-                                refresh();
-                            }}
-                    >X</button>
+        <div className='studentReviewPage'>
+            {/* Page Title*/}
+            <title>Review Page</title>
+                <h1>Review Page</h1>
+                <div className='mainContainer'>
+                    <div className='navigationbuttons'>
+                        {/* Logout Button */}
+                        <button onClick={ logout }>Logout</button>
+                        {/* Navigates back to the Events page */}
+                        <button onClick= {() => {
+                            sessionStorage.removeItem('eventName');
+                            navigate('/studentHome');
+                        }}>View Events</button>
+                    </div>
+                    {/* This Form will be used to collect the data for the Event Review */}
+                    <form className='reviewForm' id='reviewForm'>
+                        <h2>Reviewing *insert event name*</h2>
+                        <label htmlFor='rate'>Rate(1-5 Stars):</label>
+                        <br></br>
+                            <select id='rate' name='rate'
+                                    onChange={(e) => {
+                                        setRate(e.target.value);
+                                    }} required>
+                                <option value=''>Select a Rating</option>
+                                <option value='1'>1 Star</option>
+                                <option value='2'>2 Stars</option>
+                                <option value='3'>3 Stars</option>
+                                <option value='4'>4 Stars</option>
+                                <option value='5'>5 Stars</option>
+                            </select><br></br>
+                        <label htmlFor='review'>Review:</label>
+                        <br></br>
+                        <textarea id='review' name='review' type='text' 
+                                rows='5' cols='40'
+                                onChange={(e) => {
+                                    setReview(e.target.value);
+                                }} required>
+                        </textarea>
+                        <br></br>
+                        <br></br>
+                        <button type='submit' onClick={ handleSubmit }>Submit Review</button>    
+                    </form>
                 </div>
-                <label>Rating:</label>
-                <select onChange={(e) => {
-                            setRating(e.target.value);
-                }}>
-                    <option value="1">1 Star</option>
-                    <option value="2">2 Stars</option>
-                    <option value="3">3 Stars</option>
-                    <option value="4">4 Stars</option>
-                    <option value="5">5 Stars</option>
-                </select>
-                <label>
-                    Review:
-                    <textarea onChange={(e) => {
-                                setReview(e.target.value);
-                    }}>
-                    </textarea> 
-                </label>
-                <div className="submitButton">
-                    <button onClick={ submitReview }>Submit Review</button>
-                </div>
-            </form>
         </div>
-    )
+    );
 }
 
 export default ReviewForm;

@@ -12,9 +12,8 @@ const loginRouter = require('./routes/users/login');
 const logoutRouter = require('./routes/components/logout');
 const rsoCreationRouter = require('./routes/rso/rsoCreation');
 // Student Routes
-const reviewForm = require('./routes/handleAccountTypes/handleStudent/handleReviewForm');
 const displayEvents = require('./routes/handleAccountTypes/handleStudent/handleDisplayEvents');
-
+const reviewForm = require('./routes/handleAccountTypes/handleStudent/handleReviewForm');
 // Init Express
 const app = express();
 // Init Cors
@@ -44,7 +43,7 @@ app.use(
 
 // Routes
 // Student Pages
-// app.use('/studentHome', reviewForm);
+app.use('/studentHome/reviewForm', reviewForm);
 app.use('/studentHome', displayEvents);
 // Register page
 app.use('/registerStudent', registerStudentRouter);
