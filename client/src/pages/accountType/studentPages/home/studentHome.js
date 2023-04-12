@@ -9,78 +9,38 @@ import { logout } from '../../../components/logout';
 // Importing styling
 import '../style/studentHome.css';
 
-// Importing the review Form
-import ReviewForm from '../components/reviewForm';
-
 function StudentHome()
 {
     // Used to navigate around the web app
     const navigate = useNavigate();
 
 	// useState for holding what type of events the user wants shown
-	const [viewOption, setViewOption] = useState('public');
-    // Used to open the review page, only true when user is uploading a review
-    const [showReviewForm, setShowReviewForm] = useState(false);
+	 const [viewOption, setViewOption] = useState('public');
     // Used to hold the events
     const [eventList, setEventList] = useState([]);
     // For the h1 tag
-    const [h2Tag, setH2Tag] = useState('All');
-
-    // Function to open the review page
-    const handleOpenReview = (event) =>
-    {
-        setShowReviewForm(true);
-        sessionStorage.setItem('curEvent', event);
-    }
-    // Function to close the review page
-    const handleCloseReviewForm = () =>
-    {
-        setShowReviewForm(false);
-    }
-
-    // Send the data to the backend for the specific view options
-    // const sendData = (event) => 
-    // {
-	// 	event.preventDefault();// Prevents the page from refreshing
-	// 	const userEmail = sessionStorage.getItem('userEmail');
-
-    //     // Make a request to the server 
-    //     Axios.post('http://localhost:3001/studentHome', 
-    //     {
-	// 		choice: viewOption,
-	// 		email: userEmail,
-    //     })
-    //     .then(() => {
-	// 		alert('Updating Event List');
-	// 	})
-    //     .catch((error) => 
-    //     {
-    //       alert(error.message);
-    //     });
-    // }
-
-
+    const [h2Tag, setH2Tag] = useState('public');
 
     // useEffect to get all the events information from the backend and
     // display them in the table
     useEffect(() => {
-		// User information needed in the backend
-        const userEmail = sessionStorage.getItem('userEmail');
-		const userId = sessionStorage.getItem('id');
+      // User information needed in the backend
+      const userEmail = sessionStorage.getItem('userEmail');
+      const userId = sessionStorage.getItem('id');
 
-		Axios.post('http://localhost:3001/studentHome',
-		{
-			choice: viewOption,
-			email: userEmail,
-			userId: userId,
-		})
-		.then((response) => {
-			setEventList(response.data);
-		})
-		.catch((error) => {
-			alert(error.message);
-		})
-    }, [viewOption]);
+      Axios.post('http://localhost:3001/studentHome',
+      {
+        choice: viewOption,
+        email: userEmail,
+        userId: userId,
+      })
+      .then((response) => {
+        setEventList(response.data);
+      })
+      .catch((error) => {
+        alert(error.message);
+      })
+    }, [viewOption]);  
 
     return (
         <div className="studentHomePage">
@@ -88,10 +48,10 @@ function StudentHome()
           <h1>STUDENT HOME PAGE</h1>
           <div className="mainContainer">
             <div className="navigationButtons">
-              {/* Logs the user out and returns to the login page*/}
-              <button onClick={logout}>Logout</button>
-              {/* Navigates to the RSO page */}
-              <button>View RSO's</button>
+                {/* Logs the user out and returns to the login page*/}
+                <button onClick={logout}>Logout</button>
+                {/* Navigates to the RSO page */}
+                <button>View RSO's</button>
             </div>
 			{/* Handles updating which events are shown */}
 			<form>
@@ -103,36 +63,35 @@ function StudentHome()
 									value="private" checked={ viewOption === 'private' }
 									onChange={(e) => {
 										setViewOption(e.target.value);
+                                        setH2Tag(e.target.value);
 										}}/>
 								Private Events
-						</label>
+						</label><br></br>
 						<label>
 							<input type="radio" name="eventType"
 									value="rso" checked={ viewOption === 'rso' }
 									onChange={(e) => {
 										setViewOption(e.target.value);
+                                        setH2Tag(e.target.value);
 									}}/>
 								RSO Events
-						</label>
+						</label><br></br>
 						<label>
 							<input type="radio" name="eventType"
 									value="public" checked={ viewOption === 'public' }
 									onChange={(e) => {
 										setViewOption(e.target.value);
+                                        setH2Tag(e.target.value);
 									}}/>
-							Public Events
-						</label>
+							    Public Events
+						</label><br></br>
 					</div>
 					{/* <button type="submit" onClick={ sendData }>Apply</button> */}
 				</div>
 			</form>
               <div className="eventTableWrapper">
-                {/* Rendering the Review Form on/off */}
-                {showReviewForm && (
-                  <ReviewForm onClick={ handleCloseReviewForm } />
-                )}
                 <div className="eventTable">
-                  <h2>Viewing {h2Tag} Events</h2>
+                  <h2>viewing {h2Tag} events</h2>
                   <table>
                     <thead>
                       <tr>
@@ -165,8 +124,13 @@ function StudentHome()
                           <td>{val.longitude}</td>
                           <td>{val.latitude}</td>
                           <td>
-                            <button onClick={() =>
-                              handleOpenReview(val.name)}>Review</button>
+                            {/* Navigates to the review page  */}
+                            {/* And stores the event name in sessionStorage */}
+                            <button onClick={() => {
+                                sessionStorage.setItem('eventName', val.name);
+                                sessionStorage.setItem('eventId', val.eventId);
+                                navigate('/studentHome/ReviewForm');
+                            }}>Review Event</button>
                           </td>
                         </tr>
                       ))}
