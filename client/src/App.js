@@ -13,9 +13,10 @@ import SuperAdminHome from './pages/accountType/superAdminPages/home/superAdminH
 // Admin Pages
 
 // Student Pages
-import StudentHome from './pages/accountType/studentPages/home/studentHome';
+import StudentHome from './pages/accountType/studentPages/pages/studentHome';
 import RegisterStudent from './pages/register/registerStudent';
-import ReviewForm from './pages/accountType/studentPages/components/reviewForm';
+import ReviewForm from './pages/accountType/studentPages/pages/components/reviewForm';
+import EditReviews from './pages/accountType/studentPages/pages/components/editReviews';
 
 function App() 
 {    
@@ -52,6 +53,7 @@ function App()
             {/*Routes For Student*/}
             <Route path="/studentHome" element={ loginStatus ? <StudentHome loginStatus={ loginStatus }/> : <Login setLoginStatus={ setLoginStatus }/> }/>
             <Route path="/studentHome/ReviewForm" element={ loginStatus ? <ReviewForm loginStatus={ loginStatus }/> : <Login setLoginStatus={ setLoginStatus }/> }/>
+            <Route path="/studentHome/editReviews" element={ loginStatus ? <EditReviews loginStatus={ loginStatus }/> : <Login setLoginStatus={ setLoginStatus }/> }/>
           </Routes>
         </BrowserRouter>
       </UserContext.Provider>

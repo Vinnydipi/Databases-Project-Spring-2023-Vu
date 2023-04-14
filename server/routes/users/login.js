@@ -29,6 +29,7 @@ router.post('/', (req, res) => {
         if (result.length > 0) 
         {
             req.session.user = result;
+            // Remove this eventually
             console.log(req.session.user);
             res.send({ username: result[0].username, password: result[0].password,
                         userType: result[0].userType, email: result[0].email,
