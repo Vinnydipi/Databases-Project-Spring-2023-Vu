@@ -17,10 +17,10 @@ import StudentHome from './pages/accountType/studentPages/pages/studentHome';
 import RegisterStudent from './pages/register/registerStudent';
 import ReviewForm from './pages/accountType/studentPages/pages/components/reviewForm';
 import EditReviews from './pages/accountType/studentPages/pages/components/editReviews';
+import MainRso from './pages/accountType/studentPages/pages/components/joinRso';
 
 function App() 
 {    
-
   const [loginStatus, setLoginStatus] = useState('');
   const [userType, setUserType] = useState('');
 
@@ -54,6 +54,7 @@ function App()
             <Route path="/studentHome" element={ loginStatus ? <StudentHome loginStatus={ loginStatus }/> : <Login setLoginStatus={ setLoginStatus }/> }/>
             <Route path="/studentHome/ReviewForm" element={ loginStatus ? <ReviewForm loginStatus={ loginStatus }/> : <Login setLoginStatus={ setLoginStatus }/> }/>
             <Route path="/studentHome/editReviews" element={ loginStatus ? <EditReviews loginStatus={ loginStatus }/> : <Login setLoginStatus={ setLoginStatus }/> }/>
+            <Route path="/studentHome/mainRso" element={ loginStatus ? <MainRso loginStatus={ loginStatus }/> : <Login setLoginStatus={ setLoginStatus }/> }/>
           </Routes>
         </BrowserRouter>
       </UserContext.Provider>

@@ -51,7 +51,7 @@ function StudentHome()
                 {/* Logs the user out and returns to the login page*/}
                 <button onClick={logout}>Logout</button>
                 {/* Navigates to the RSO page */}
-                <button>View RSO's</button>
+                <button onClick={() => navigate('/studentHome/MainRso')}>View RSO's</button>
             </div>
 			{/* Handles updating which events are shown */}
 			<form>
