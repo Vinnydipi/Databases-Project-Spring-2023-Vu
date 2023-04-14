@@ -15,7 +15,6 @@ function getUniversityId(domain)
 
 function getQuery(option, domain, ID)
 {
-
     // Declaring the SQL query as empty so it can be updated depending on viewOption
     let sqlGetEvents = '';
     // determing what out sql query will be based on viewOption
@@ -51,8 +50,6 @@ router.post('/', (req, res) =>
 
     const eventQuery = getQuery(viewOption, emailDomain, userId);
 
-    console.log(eventQuery);
-
     // Query the DB and return the correct events to the front end for viewing
     db.query(eventQuery, (err, results) => {
         if (err)
@@ -63,7 +60,6 @@ router.post('/', (req, res) =>
         }
         else 
         {
-            console.log(results);
             // Sends the events back to the front end as a JSON object
             res.json(results);
         }

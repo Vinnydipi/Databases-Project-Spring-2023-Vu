@@ -14,13 +14,15 @@ const rsoCreationRouter = require('./routes/rso/rsoCreation');
 // Student Routes
 const displayEvents = require('./routes/handleAccountTypes/handleStudent/handleDisplayEvents');
 const reviewForm = require('./routes/handleAccountTypes/handleStudent/handleReviewForm');
+const editReviews = require('./routes/handleAccountTypes/handleStudent/handleEditReview');
+
 // Init Express
 const app = express();
 // Init Cors
 app.use(express.json());
 app.use(cors({
     origin: ['http://localhost:3000'],
-    methods: ['GET', 'POST'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
 
@@ -43,6 +45,7 @@ app.use(
 
 // Routes
 // Student Pages
+app.use('/studentHome/editReviews', editReviews);
 app.use('/studentHome/reviewForm', reviewForm);
 app.use('/studentHome', displayEvents);
 // Register page
