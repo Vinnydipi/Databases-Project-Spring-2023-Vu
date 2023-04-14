@@ -9,7 +9,6 @@ import '../../style/reviewForm.css';
 // Logout feature
 import { logout } from '../../../../components/logout';
 
-// Passes the eventName for the h1 header!
 function ReviewForm()
 {
     // Used to navigate around the web app
