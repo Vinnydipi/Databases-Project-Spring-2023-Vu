@@ -32,13 +32,6 @@ function Login()
       });
     }, []);
 
-    // Navigate to the different userType Pages
-    const userTypeToPage = {
-      student: '/studentHome',
-      superadmin: '/superAdminHome',
-      admin: '/adminHome'
-    };
-
     // Used to Check the Login info and if correct then redirects 
     // to the Event page to show the events 
     const login = () => 
@@ -63,15 +56,27 @@ function Login()
             sessionStorage.setItem('curUser', user.username);
             sessionStorage.setItem('userEmail', user.email);
             sessionStorage.setItem('id', user.idNum);
+            sessionStorage.setItem('userType', user.userType);
+            // Getting the universityID
+            const domain = user.email.split('@')[1];
+            sessionStorage.setItem('universityId', getUniversityId(domain));
 
-            // Now check the userType and redirect accordingly
-            const userType = user.userType;
-            const nextPage = userTypeToPage[userType];
-            navigate(nextPage);
+            navigate('/mainPage');
             refresh();
           }
         });
     };
+
+    // Function to grab the email domain and set to the according number
+  function getUniversityId(domain)
+  {
+    if (domain === 'knights.ucf.edu')
+        return 1;
+    else if (domain === 'ufl.edu')
+        return 2;
+    else
+        return 3;
+  }
 
     // Refreshing the page
     const refresh = () => window.location.reload(true);

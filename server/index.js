@@ -10,11 +10,11 @@ const registerStudentRouter = require('./routes/users/registerStudent');
 const registerSuperAdminRouter = require('./routes/users/registerSuperAdmin');
 const loginRouter = require('./routes/users/login');
 const logoutRouter = require('./routes/components/logout');
-const rsoCreationRouter = require('./routes/rso/rsoCreation');
 // Student Routes
 const displayEvents = require('./routes/handleAccountTypes/handleStudent/handleDisplayEvents');
 const reviewForm = require('./routes/handleAccountTypes/handleStudent/handleReviewForm');
 const editReviews = require('./routes/handleAccountTypes/handleStudent/handleEditReview');
+const rsoPage = require('./routes/handleAccountTypes/handleStudent/handleRsoPage');
 
 // Init Express
 const app = express();
@@ -45,9 +45,10 @@ app.use(
 
 // Routes
 // Student Pages
-app.use('/studentHome/editReviews', editReviews);
-app.use('/studentHome/reviewForm', reviewForm);
-app.use('/studentHome', displayEvents);
+app.use('/mainPage/MainRso', rsoPage);
+app.use('/mainPage/editReviews', editReviews);
+app.use('/mainPage/reviewForm', reviewForm);
+app.use('/mainPage', displayEvents);
 // Register page
 app.use('/registerStudent', registerStudentRouter);
 app.use('/registerSuperAdmin', registerSuperAdminRouter);
@@ -55,8 +56,7 @@ app.use('/registerSuperAdmin', registerSuperAdminRouter);
 app.use('/login', loginRouter);
 // Used for the logout button on all the pages besides the register/login page
 app.use('/logout', logoutRouter);
-// Used for inserting a new rso to the database with the status of pending
-app.use('/createRso', rsoCreationRouter);
+
 
 app.listen(3001, () => {
     console.log('running on port 3001');

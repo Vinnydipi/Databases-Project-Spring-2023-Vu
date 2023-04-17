@@ -8,16 +8,14 @@ import { UserContext } from './pages/utils/UserContext';
 import Login from './pages/login/login';
 // SuperAdmin Pages
 import RegisterSuperAdmin from './pages/register/registerSuperAdmin';
-import CreateEvent from './pages/accountType/superAdminPages/components/createEvent';
-import SuperAdminHome from './pages/accountType/superAdminPages/home/superAdminHome';
 // Admin Pages
-
+import AdminCreateEvent from './pages/home/adminCreateEvent';
 // Student Pages
-import StudentHome from './pages/accountType/studentPages/pages/studentHome';
+import MainPage from './pages/home/mainPage';
 import RegisterStudent from './pages/register/registerStudent';
-import ReviewForm from './pages/accountType/studentPages/pages/components/reviewForm';
-import EditReviews from './pages/accountType/studentPages/pages/components/editReviews';
-import MainRso from './pages/accountType/studentPages/pages/components/joinRso';
+import ReviewForm from './pages/home/reviewForm';
+import EditReviews from './pages/home/editReviews';
+import MainRso from './pages/home/rsoPage';
 
 function App() 
 {    
@@ -48,13 +46,13 @@ function App()
             <Route path="/registerStudent" element={<RegisterStudent/>}/>
             <Route path="/registerSuperAdmin" element={<RegisterSuperAdmin/>}/>
             {/*Routes For Super Admin*/}
-            <Route path="/superAdminHome" element={ loginStatus ? <SuperAdminHome/> : <Login setLoginStatus={ setLoginStatus }/> }/>
-            <Route path="/createEvent" element={ loginStatus ? <CreateEvent/> : <Login setLoginStatus={ setLoginStatus }/> }/>
             {/*Routes For Student*/}
-            <Route path="/studentHome" element={ loginStatus ? <StudentHome loginStatus={ loginStatus }/> : <Login setLoginStatus={ setLoginStatus }/> }/>
-            <Route path="/studentHome/ReviewForm" element={ loginStatus ? <ReviewForm loginStatus={ loginStatus }/> : <Login setLoginStatus={ setLoginStatus }/> }/>
-            <Route path="/studentHome/editReviews" element={ loginStatus ? <EditReviews loginStatus={ loginStatus }/> : <Login setLoginStatus={ setLoginStatus }/> }/>
-            <Route path="/studentHome/mainRso" element={ loginStatus ? <MainRso loginStatus={ loginStatus }/> : <Login setLoginStatus={ setLoginStatus }/> }/>
+            <Route path="/mainPage" element={ loginStatus ? <MainPage loginStatus={ loginStatus }/> : <Login setLoginStatus={ setLoginStatus }/> }/>
+            <Route path="/mainPage/ReviewForm" element={ loginStatus ? <ReviewForm loginStatus={ loginStatus }/> : <Login setLoginStatus={ setLoginStatus }/> }/>
+            <Route path="/mainPage/editReviews" element={ loginStatus ? <EditReviews loginStatus={ loginStatus }/> : <Login setLoginStatus={ setLoginStatus }/> }/>
+            <Route path="/mainPage/mainRso" element={ loginStatus ? <MainRso loginStatus={ loginStatus }/> : <Login setLoginStatus={ setLoginStatus }/> }/>
+            {/* Routes For Admin */}
+            <Route path="/mainPage/createEvent" element={ loginStatus ? <AdminCreateEvent loginStatus={ loginStatus }/> : <Login setLoginStatus={ setLoginStatus }/> } />
           </Routes>
         </BrowserRouter>
       </UserContext.Provider>
