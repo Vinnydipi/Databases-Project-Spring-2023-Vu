@@ -9,9 +9,6 @@ import CreateUniversity from '../superAdminButton/createUniversity';
 // Importing the logout feature
 import { logout } from '../../components/logout';
 
-// Import Styles
-import './style/navStyle.css';
-
 function Navigation({ navigate, userType })
 {
     const [showForm, setShowForm] = useState(false);
@@ -49,7 +46,7 @@ function Navigation({ navigate, userType })
                 </button>
             ))}
             {/* Logs the user out and returns to the login page*/}
-			<button onClick={logout}>Logout</button>
+			<button className='navButton' onClick={logout}>Logout</button>
         </div>
     )
 }

@@ -4,9 +4,6 @@ import React from 'react';
 // Import API
 import { handleCreateUniversity } from '../API/superAdmin/handleCreateUniversity';
 
-// Import CSS
-import './style/createUni.css';
-
 function CreateUniversity({ showCreateUni, setShowCreateUni })
 {
     // The Public Event information to be submitted to the backend
