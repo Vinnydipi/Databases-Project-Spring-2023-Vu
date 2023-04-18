@@ -21,12 +21,13 @@ function getQuery(option, domain, ID)
     if (option === 'public')
     {
         // This is where only public events will be shown (default option)
-        sqlGetEvents = "SELECT * FROM events WHERE rsoID = 2 AND isPrivate = 0 AND hostRso = 'NONE'";
+        sqlGetEvents = "SELECT * FROM events WHERE rsoID = 2 AND isPrivate = 1 AND hostRso = 'NONE'";
     }
     if (option === 'private')
     {
-        // This is where only private events will be shown
-        sqlGetEvents ="SELECT * FROM events WHERE isPrivate = 1 AND contactEmail LIKE '%"+domain +"'";
+        // This is where only private events will be shown hosted by a fellow university member
+        sqlGetEvents ="SELECT * FROM events WHERE isPrivate = 0 AND contactEmail LIKE '%"+domain +"'\
+                        AND rsoId = 2";
     }
     if (option === 'rso')
     {

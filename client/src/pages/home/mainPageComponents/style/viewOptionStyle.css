@@ -1,0 +1,26 @@
+.viewContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .viewContainer h3 {
+    text-align: left;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+  
+  .viewContainer label {
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .viewContainer input[type="radio"] {
+    margin-right: 10px;
+  }
+  

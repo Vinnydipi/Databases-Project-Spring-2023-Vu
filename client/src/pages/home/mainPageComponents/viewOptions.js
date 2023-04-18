@@ -1,5 +1,8 @@
 import React from 'react';
 
+// Import Styles
+import './style/viewOptionStyle.css';
+
 function ViewOptions({ viewOption, setViewOption, setH2Tag })
 {
     return(

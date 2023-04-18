@@ -18,6 +18,8 @@ const rsoPage = require('./routes/handleAccountTypes/handleStudent/handleRsoPage
 // Admin Routes
 const GetRsoIfAdmin = require('./routes/handleAccountTypes/handleAdmin/handleGetRsoIfAdmin');
 const CreateEvent = require('./routes/handleAccountTypes/handleAdmin/handleCreateEvent');
+// Superadmin Routes
+const superAdmin = require('./routes/handleAccountTypes/handleSuperAdmin/handleSuperAdmin');
 
 // Init Express
 const app = express();
@@ -55,6 +57,8 @@ app.use('/mainPage', displayEvents);
 // Admin Routes
 app.use('/mainPage', GetRsoIfAdmin);
 app.use('/mainPage', CreateEvent);
+// Superadmin Routes
+app.use('/mainPage', superAdmin);
 // Register Routes
 app.use('/registerStudent', registerStudentRouter);
 app.use('/registerSuperAdmin', registerSuperAdminRouter);

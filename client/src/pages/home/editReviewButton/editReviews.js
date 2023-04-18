@@ -3,7 +3,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 
-// Importing styling
+// Import styles
 import './editReview.css';
 
 // Import components
