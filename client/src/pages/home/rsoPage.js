@@ -7,9 +7,9 @@ import Axios from 'axios';
 import { logout } from '../components/logout';
 
 // Import API functions
-import { handleSubmitNewRso } from './API/handleSubmitNewRso';
-import { handleJoinRso } from './API/handleJoin';
-import { handleLeaveRso } from './API/handleLeaveRso'
+import { handleSubmitNewRso } from './API/rso/handleSubmitNewRso';
+import { handleJoinRso } from './API/rso/handleJoin';
+import { handleLeaveRso } from './API/rso/handleLeaveRso'
 
 function MainRso()
 {

@@ -15,6 +15,9 @@ const displayEvents = require('./routes/handleAccountTypes/handleStudent/handleD
 const reviewForm = require('./routes/handleAccountTypes/handleStudent/handleReviewForm');
 const editReviews = require('./routes/handleAccountTypes/handleStudent/handleEditReview');
 const rsoPage = require('./routes/handleAccountTypes/handleStudent/handleRsoPage');
+// Admin Routes
+const GetRsoIfAdmin = require('./routes/handleAccountTypes/handleAdmin/handleGetRsoIfAdmin');
+const CreateEvent = require('./routes/handleAccountTypes/handleAdmin/handleCreateEvent');
 
 // Init Express
 const app = express();
@@ -44,19 +47,21 @@ app.use(
 );
 
 // Routes
-// Student Pages
+// Student Routes
 app.use('/mainPage/MainRso', rsoPage);
 app.use('/mainPage/editReviews', editReviews);
 app.use('/mainPage/reviewForm', reviewForm);
 app.use('/mainPage', displayEvents);
-// Register page
+// Admin Routes
+app.use('/mainPage', GetRsoIfAdmin);
+app.use('/mainPage', CreateEvent);
+// Register Routes
 app.use('/registerStudent', registerStudentRouter);
 app.use('/registerSuperAdmin', registerSuperAdminRouter);
-// Login page
+// Login Routes
 app.use('/login', loginRouter);
-// Used for the logout button on all the pages besides the register/login page
+// Used for the logout button on all the Routes besides the register/login Routes
 app.use('/logout', logoutRouter);
-
 
 app.listen(3001, () => {
     console.log('running on port 3001');
