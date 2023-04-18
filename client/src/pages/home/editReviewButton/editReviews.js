@@ -4,14 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 
 // Importing styling
-import './style/editReview.css';
+import './editReview.css';
 
 // Import components
-import ReadOnlyRow from './editReviewComponents/readOnlyRow'
-import EditTableRow from './editReviewComponents/editTableRows';
+import ReadOnlyRow from './components/readOnlyRow';
+import EditTableRow from './components/editTableRows';
 
 // Logout feature
-import { logout } from '../components/logout';
+import { logout } from '../../components/logout';
 
 function EditReviews()
 {

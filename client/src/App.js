@@ -9,12 +9,12 @@ import Login from './pages/login/login';
 // SuperAdmin Pages
 import RegisterSuperAdmin from './pages/register/registerSuperAdmin';
 // Admin Pages
-import AdminCreateEvent from './pages/home/adminCreateEvent';
+import AdminCreateEvent from './pages/home/createEventButton/adminCreateEvent';
 // Student Pages
 import MainPage from './pages/home/mainPage';
 import RegisterStudent from './pages/register/registerStudent';
 import ReviewForm from './pages/home/reviewForm';
-import EditReviews from './pages/home/editReviews';
+import EditReviews from './pages/home/editReviewButton/editReviews';
 import MainRso from './pages/home/rsoPage';
 
 function App() 

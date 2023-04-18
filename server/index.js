@@ -15,6 +15,8 @@ const displayEvents = require('./routes/handleAccountTypes/handleStudent/handleD
 const reviewForm = require('./routes/handleAccountTypes/handleStudent/handleReviewForm');
 const editReviews = require('./routes/handleAccountTypes/handleStudent/handleEditReview');
 const rsoPage = require('./routes/handleAccountTypes/handleStudent/handleRsoPage');
+// Admin Routes
+const GetRsoIfAdmin = require('./routes/handleAccountTypes/handleAdmin/handleGetRsoIfAdmin');
 
 // Init Express
 const app = express();
@@ -49,6 +51,8 @@ app.use('/mainPage/MainRso', rsoPage);
 app.use('/mainPage/editReviews', editReviews);
 app.use('/mainPage/reviewForm', reviewForm);
 app.use('/mainPage', displayEvents);
+// Admin Pages
+app.use('/mainPage/createEvent', GetRsoIfAdmin);
 // Register page
 app.use('/registerStudent', registerStudentRouter);
 app.use('/registerSuperAdmin', registerSuperAdminRouter);

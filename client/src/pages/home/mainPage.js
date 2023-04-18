@@ -61,8 +61,7 @@ function StudentHome()
 				<Table h2Tag={ h2Tag } navigate={ navigate } eventList={ eventList }/>
             </div>
         </div>
-    );
-          
+    );     
 }
 
 export default StudentHome;

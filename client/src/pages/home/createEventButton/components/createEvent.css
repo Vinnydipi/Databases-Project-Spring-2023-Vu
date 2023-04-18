@@ -1,0 +1,12 @@
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .rsoForm {
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 5px;
+  }

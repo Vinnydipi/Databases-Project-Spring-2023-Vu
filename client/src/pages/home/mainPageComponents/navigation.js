@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
+// Import form
+import AdminCreateEvent from '../createEventButton/adminCreateEvent';
 
 function Navigation({ navigate, userType })
 {
+    const [showForm, setShowForm] = useState(false);
+
     return (
         <div className="navigationButtons">
             {/* Navigates to the RSO page */}
             <button onClick={() => navigate('/mainPage/MainRso')}>View RSO's</button>
-            {userType === 'admin' && (<button onClick={() => navigate('/mainPage/createEvent')}>Create Event</button>)}
+            {userType === 'admin' && (showForm ? <AdminCreateEvent /> 
+            : <button onClick={() => setShowForm(true)}>Create Event</button>)}
         </div>
     )
 }
