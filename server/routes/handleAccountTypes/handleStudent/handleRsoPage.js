@@ -14,7 +14,7 @@ router.post('/', (req, res) =>
         INSERT INTO rso (name, universityId, memberCount, status, creatorId)\
         VALUES (?, ?, ?, ?, ?);';
 
-    db.query(addRsoQuery, [name, universityId, 1, status, creatorId], (err, results) =>
+    db.query(addRsoQuery, [name, universityId, 0, status, creatorId], (err, results) =>
     {
         if (err) 
         {

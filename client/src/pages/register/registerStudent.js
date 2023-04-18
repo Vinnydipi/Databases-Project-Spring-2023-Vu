@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+// Import CSS
+import '../style/preLoginStyle.css';
+
 function RegisterStudent() 
 {
     // Used to navigate to the login page
@@ -31,37 +34,46 @@ function RegisterStudent()
 
     // HTML FOR THE FILE 
     return (
-          <div className='registration'>
-          <h1>Student Registration</h1>
-            <div>
-              <label>Username:</label>
-              <input type="text"
-              onChange={(e) => {
-                setUsernameReg(e.target.value);
-                }}></input>
+        <div className=' container'>
+            <div className='navButtons'>
+                <button onClick={()=>navigate('/')}>To Login Page</button>
+                <button onClick={()=>navigate('/registerSuperAdmin')}>Superadmin Account Registration</button>
             </div>
-            <div>
-              <label>Email:</label>
-              <input 
-              type="text"
-              onChange={(e) => {
-                setEmailReg(e.target.value);
-                }}></input>
+            <div className='form'>
+                <h1>Student Registration</h1>
+                <div className='formGroup'>
+                    <label>Username:</label>
+                        <input 
+                                type="text"
+                                onChange={(e) => {
+                                setUsernameReg(e.target.value);
+                                }}>
+                        </input>
+                </div>
+                <div className='formGroup'>
+                    <label>Email:</label>
+                        <input 
+                            type="text"
+                            onChange={(e) => {
+                            setEmailReg(e.target.value);
+                            }}>
+                        </input>
+                </div>
+                <div className='formGroup'>
+                    <label>Password:</label>
+                        <input 
+                            type="password"
+                                nChange={(e) => {
+                            setPasswordReg(e.target.value);
+                            }}>
+                        </input>
+                </div>
+                    
+                <div className='buttons'>
+                    <button onClick={ studentRegister }>Register as Student</button>
+                </div>
             </div>
-            <div>
-              <label>Password:</label>
-              <input 
-              type="text"
-              onChange={(e) => {
-                setPasswordReg(e.target.value);
-                }}></input>
-            </div>
-            <div>
-              <button onClick={ studentRegister }>Register as Student</button>
-            </div>
-            <button onClick={()=>navigate('/')}>To Login Page</button>
-            <button onClick={()=>navigate('/registerSuperAdmin')}>Superadmin Account Registration</button>
-          </div>
+        </div>
     );
 }
 

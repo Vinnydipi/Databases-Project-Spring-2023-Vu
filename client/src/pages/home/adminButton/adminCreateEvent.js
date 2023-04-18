@@ -11,20 +11,6 @@ function AdminCreateEvent({ showForm, setShowForm })
     const [rsoList, setRsoList] = useState([]);
     // The current logged in User
     const userId = sessionStorage.getItem('id'); 
-    // The information for the event that the admin is making
-    const [eventInfo, setEventInfo] = useState({
-        name: '',
-        category: '',
-        description: '',
-        time: null,
-        phone: null,
-        email: null,
-        isPrivate: null,
-        hostRso: '',
-        long: null,
-        lat: null,
-        rsoID: null,
-      });
 
     const setData = (event) =>
     {
@@ -34,7 +20,8 @@ function AdminCreateEvent({ showForm, setShowForm })
         // Finds hostRso id number
         const selectedRso = rsoList.find((rso) => rso.name  === formData.get('hostRso'));
 
-        const eventData = {
+        const eventData = 
+        {
             name: formData.get('name'),
             category: formData.get('category'),
             description: formData.get('description'),
@@ -45,10 +32,9 @@ function AdminCreateEvent({ showForm, setShowForm })
             hostRso: formData.get('hostRso'),
             long: formData.get('long'),
             lat: formData.get('lat'),
-            rsoID: selectedRso ? selectedRso.rsoId : null, // adds the rsoID
-          };
+            rsoID: selectedRso ? selectedRso.rsoId : 2, // adds the rsoID
+        };
         
-        setEventInfo(eventData); // Updates the useState obj with the form info
         handleCreateEvent(eventData)// Call the API function
     };
 
@@ -64,10 +50,10 @@ function AdminCreateEvent({ showForm, setShowForm })
             {
                 console.log(error);
             });
-    }, [userId, eventInfo]);
+    }, [userId, showForm]);
 
     return(
-        <div className='form'>
+        <div className='form-wrapper'>
             {showForm && (
                 <form className='eventForm' onSubmit={ setData }>
                     <button onClick={() => setShowForm(false)}>X</button>
@@ -107,6 +93,7 @@ function AdminCreateEvent({ showForm, setShowForm })
                     <label>Host RSO:
                         <select name='hostRso'>
                             <option value=''>Select RSO</option>
+                            <option value='NONE'>NONE</option>
                             {rsoList.map((rso) => (
                                 <option key={rso.rsoId} value={rso.name}>
                                     {rso.name}

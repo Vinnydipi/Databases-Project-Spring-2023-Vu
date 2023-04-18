@@ -3,6 +3,9 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+// Import CSS
+import '../style/preLoginStyle.css';
+
 function Login()
 {
     // To navigate to the register page
@@ -83,31 +86,27 @@ function Login()
 
     // HTML FOR THE FILE
     return (
-        <div className='login'>
-          <h2>LOGIN</h2>
-          <div>
-            <label>Username:</label>
-            <input type="text"
-            onChange={(e) => 
-            {
-              setUsername(e.target.value);
-            }}></input>
-          </div>
-          <div>
-            <label>Password:</label>
-            <input type="text"
-            onChange={(e) => 
-            {
-              setPassword(e.target.value);
-            }}></input>
-          </div>
-          <div>
-            <button onClick={()=>navigate('/registerStudent')}>Register Student Account</button>
-            <button onClick={()=>navigate('/registerSuperAdmin')}>Register Superadmin Account</button>
-          </div>
-          <button onClick={ login }>Login</button>
-          { isLoggedIn && 'User Logged in Rerouting'}
+      <div className='container'>
+        <div className='navButtons'>
+          <button onClick={() => navigate('/registerStudent')}>Register Student Account</button>
+          <button onClick={() => navigate('/registerSuperAdmin')}>Register Superadmin Account</button>
         </div>
+        <div className='form'>
+          <h2>LOGIN</h2>
+          <div className='formGroup'>
+            <label>Username:</label>
+            <input type='text' onChange={(e) => setUsername(e.target.value)}></input>
+          </div>
+          <div className='formGroup'>
+            <label>Password:</label>
+            <input type='password' onChange={(e) => setPassword(e.target.value)}></input>
+          </div>
+          <div className='buttons'>
+            <button onClick={login}>Login</button>
+          </div>
+          {isLoggedIn && 'User Logged in Rerouting'}
+        </div>
+      </div>
     );
 }
 
