@@ -1,8 +1,5 @@
 import React from "react";
 
-// Import Styles
-import './style/tableStyle.css';
-
 function Table ({ h2Tag, navigate, eventList })
 {
     const handleMapClick = (lat, long) =>

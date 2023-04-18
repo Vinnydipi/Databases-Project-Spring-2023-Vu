@@ -1,9 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 
-// Import CSS
-import './style/createPublic.css';
-
 // Import API's
 import { handleCreatePublicEvent } from '../API/superAdmin/handleCreatePublicEvent';
 
