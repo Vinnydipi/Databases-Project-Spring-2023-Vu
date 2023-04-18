@@ -1,6 +1,6 @@
 import Axios from 'axios';
 
-// Sends the information for creating an RSO to the backend
+// Sends the information for leaving an RSO to the backend
 export const handleLeaveRso = (rsoId, userId) =>
     {
         Axios.delete('http://localhost:3001/mainPage/MainRso', 

@@ -9,7 +9,7 @@ import Login from './pages/login/login';
 // SuperAdmin Pages
 import RegisterSuperAdmin from './pages/register/registerSuperAdmin';
 // Admin Pages
-import AdminCreateEvent from './pages/home/createEventButton/adminCreateEvent';
+import AdminCreateEvent from './pages/home/adminButton/adminCreateEvent';
 // Student Pages
 import MainPage from './pages/home/mainPage';
 import RegisterStudent from './pages/register/registerStudent';

@@ -1,19 +1,19 @@
 import Axios from 'axios';
 
-// Sends the information for creating an RSO to the backend
+// Sends the information for joining an RSO to the backend
 export const handleJoinRso = (rsoId, userId) =>
     {
-        Axios.post(`http://localhost:3001/mainPage/createEvent/getRsoIfAdmin`)
+        Axios.post(`http://localhost:3001/mainPage/MainRso/join?rsoId=${rsoId}&userId=${userId}`)
         .then((response) => 
         {
             // Handles success response
             console.log(response);
-            alert("Created New Event, Redirecting To Home Page");
+            alert("You have joined an RSO!");
         })
         .catch((error) =>
         {
             // Handle error response
             console.log(error);
-            alert("Error Creating Event, Try Again");
+            alert("Error Joining RSO, try again!");
         })
     };
