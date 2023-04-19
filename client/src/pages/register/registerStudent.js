@@ -62,13 +62,12 @@ function RegisterStudent()
                 <div className='formGroup'>
                     <label>Password:</label>
                         <input 
-                            type="password"
-                                nChange={(e) => {
-                            setPasswordReg(e.target.value);
+                            type="text"
+                                onChange={(e) => {
+                                setPasswordReg(e.target.value);
                             }}>
                         </input>
                 </div>
-                    
                 <div className='buttons'>
                     <button onClick={ studentRegister }>Register as Student</button>
                 </div>
