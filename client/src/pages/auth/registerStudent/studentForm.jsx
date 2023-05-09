@@ -1,38 +1,7 @@
-import React, { useState } from 'react';
-import Axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 
-// Import CSS
-import '../style/preLoginStyle.css';
-
-function RegisterStudent() 
+function RegistrationForm({ navigate, setUsernameReg, setPasswordReg, setEmailReg, studentRegister })
 {
-    // Used to navigate to the login page
-    const navigate = useNavigate();
-
-    // Info Used for the Registering of a new user
-    const [usernameReg, setUsernameReg] = useState('');
-    const [passwordReg, setPasswordReg ] = useState('');
-    const [emailReg, setEmailReg ] = useState('');
-
-    // Used to register a new student account
-    const studentRegister = () => 
-    {
-        Axios.post('http://localhost:3001/registerStudent', {
-        username: usernameReg,
-        password: passwordReg,
-        email: emailReg,
-        userType: 'student',
-        }).then(() => {
-          alert('Successful insert');
-        })
-        .catch((error) =>
-        {
-          alert(error.message);
-        });
-    };
-
-    // HTML FOR THE FILE 
     return (
         <div className=' container'>
             <div className='navButtons'>
@@ -73,7 +42,7 @@ function RegisterStudent()
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
-export default RegisterStudent;
+export default RegistrationForm;
