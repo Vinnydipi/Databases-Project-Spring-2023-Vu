@@ -5,14 +5,14 @@ import { UserContext } from './pages/utils/UserContext';
 
 // Importing Pages
 // RandomVu Pages
-import Login from './pages/login/login';
+import Login from './pages/auth/login/login';
 // SuperAdmin Pages
-import RegisterSuperAdmin from './pages/register/registerSuperAdmin';
+import RegisterSuperAdmin from './pages/auth/registerSuper/registerSuperAdmin';
 // Admin Pages
 import AdminCreateEvent from './pages/home/adminButton/adminCreateEvent';
 // Student Pages
 import MainPage from './pages/home/mainPage';
-import RegisterStudent from './pages/register/registerStudent';
+import RegisterStudent from './pages/auth/registerStudent/registerStudent';
 import ReviewForm from './pages/home//reviewForm/reviewForm';
 import EditReviews from './pages/home/editReviewButton/editReviews';
 import MainRso from './pages/home/rso/rsoPage';
