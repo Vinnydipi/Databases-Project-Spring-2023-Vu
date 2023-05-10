@@ -3,9 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 
-// Importing the logout feature
-import { logout } from '../components/logout';
-
 // Import React Components
 import Navigation from './mainPageComponents/navigation';
 import ViewOptions from './mainPageComponents/viewOptions';
@@ -51,17 +48,17 @@ function StudentHome()
 
     return (
         <div className="homePage">
-			<div className="navigate">
-				<Navigation navigate={ navigate } userType={ type } />
-			</div>
-			{/* page title */}
-			<h1>HOME PAGE</h1>
-				<div className='viewOptions'>
-					<ViewOptions viewOption={ viewOption } setViewOption={ setViewOption } setH2Tag={ setH2Tag }/>
-				</div>
-				<div className='table'>
-					<Table h2Tag={ h2Tag } navigate={ navigate } eventList={ eventList }/>
-				</div>
+          <div className="taskBar">
+            <Navigation navigate={ navigate } userType={ type } />
+          </div>
+          {/* page title */}
+          <h1>HOME PAGE</h1>
+          <div className='viewOptions'>
+            <ViewOptions viewOption={ viewOption } setViewOption={ setViewOption } setH2Tag={ setH2Tag }/>
+          </div>
+          <div className='table'>
+            <Table h2Tag={ h2Tag } navigate={ navigate } eventList={ eventList }/>
+          </div>
         </div>
     );     
 }

@@ -109,7 +109,7 @@ function EditReviews()
     return (
         <div className='mainContainer'>
             STUDENT EVENT REVIEW PAGE
-            <div className='navButtons'>
+            <div className='taskBar'>
                 <button onClick={logout}>Logout</button>
                 <button onClick={() => navigate('/mainPage')}>Student Home</button>
             </div>

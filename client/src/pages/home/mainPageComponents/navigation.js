@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 // Import form
 import AdminCreateEvent from '../adminButton/adminCreateEvent';
 // Import superAdmin buttons
-import CreatePublicEvent from '../superAdminButton/createPublicEvent';
-import CreateUniversity from '../superAdminButton/createUniversity';
+import CreatePublicEvent from '../superAdmin/createPublicEvent';
+import CreateUniversity from '../superAdmin/createUniversity';
 
 // Importing the logout feature
 import { logout } from '../../components/logout';

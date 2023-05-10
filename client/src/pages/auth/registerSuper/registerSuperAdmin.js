@@ -23,19 +23,6 @@ function RegisterSuperAdmin()
 	const handleSuperAdminRegister = () => 
 	{
 		RegisterSuperAdminFunc(usernameReg, passwordReg, emailReg)
-			.then(() => 
-			{
-				alert('Successful insert');
-			}).catch((error) => 
-			{
-				if (error.response && error.response.status === 400) 
-				{
-				alert('Bad request: ' + error.response.data);
-				} else 
-				{
-				alert(error.message);
-				}
-			});
 	};
 
 	// HTML FOR THE FILE 

@@ -2,39 +2,16 @@
 import React from 'react';
 
 // Import API's
-import { handleCreatePublicEvent } from '../API/superAdmin/handleCreatePublicEvent';
+import { handleCreatePublicEvent } from './API/handleCreatePublicEvent';
+// Import Function
+import { setData } from './functions';
 
 function CreatePublicEvent({ setShowCreatePublic, showCreatePublic })
 {
-    
-    // The Public Event information to be submitted to the backend
-    const setData = (event) =>
-    {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-
-        // Sets the info to eventData so we can
-        const eventData = 
-        {
-            name: formData.get('name'),
-            category: formData.get('category'),
-            description: formData.get('description'),
-            time: formData.get('time'),
-            phone: formData.get('phone'),
-            email: formData.get('email'),
-            long: formData.get('long'),
-            lat: formData.get('lat'),
-        };
-
-        // Calls the API with the given info above
-        handleCreatePublicEvent(eventData);
-        setShowCreatePublic(false);
-    };
-
     return(
-        <div>Creating Public Event
+        <div className='publicEventContainer'>Creating Public Event
             {showCreatePublic && (
-                <form className='publicEvent' onSubmit={ setData }>
+                <form className='publicEvent' onSubmit={ setData(handleCreatePublicEvent, setShowCreatePublic) }>
                     <button onClick={() => setShowCreatePublic(false)}>X</button>
                     <br></br>
                     <label>Event Name:</label><br></br>
@@ -64,7 +41,6 @@ function CreatePublicEvent({ setShowCreatePublic, showCreatePublic })
                     <button type='submit'>Submit</button>
                 </form>
             )}  
-
         </div>
     )
 }

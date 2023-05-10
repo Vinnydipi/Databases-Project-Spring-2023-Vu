@@ -22,16 +22,8 @@ function RegisterStudent()
     // Used to register a new student account
     const handleStudentRegister = () => 
     {
-        studentRegister(usernameReg, passwordReg, emailReg)
-            .then(() => {
-                alert('Successful insert');
-                navigate('/');
-            })
-            .catch((error) =>
-            {
-            alert(error.message);
-            });
-    };
+        studentRegister(usernameReg, passwordReg, emailReg, navigate)
+    }
 
     // JSX  
     return (
