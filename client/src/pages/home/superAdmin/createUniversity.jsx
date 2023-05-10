@@ -11,7 +11,7 @@ function CreateUniversity({ showCreateUni, setShowCreateUni })
     return(
         <div className='createUniContainer'>
             {showCreateUni && (
-                <form className='universityForm' onSubmit={ setUniData(handleCreateUniversity, setShowCreateUni) }>
+                <form className='universityForm' onSubmit={(event) => setUniData(event, handleCreateUniversity, setShowCreateUni)}>
                     <button onClick={() => setShowCreateUni(false)}>X</button>
                     <br></br>
                     <label>University Name:</label><br></br>

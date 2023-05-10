@@ -15,7 +15,7 @@ import MainPage from './pages/home/mainPage';
 import RegisterStudent from './pages/auth/registerStudent/registerStudent';
 import ReviewForm from './pages/home//reviewForm/reviewForm';
 import EditReviews from './pages/home/editReviewButton/editReviews';
-import MainRso from './pages/home/rso/rsoPage';
+import MainRso from './pages/home/rso/mainRso';
 
 function App() 
 {    

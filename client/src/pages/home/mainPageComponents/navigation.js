@@ -22,6 +22,7 @@ function Navigation({ navigate, userType })
             {userType === 'admin' && (showForm 
                 ? <AdminCreateEvent setShowForm={ setShowForm } showForm={showForm} /> 
                 : <button onClick={() => setShowForm(true)}>Create Event</button>)}
+                
             {userType === "superadmin" && (showCreatePublic ? (
                 <CreatePublicEvent
                     setShowCreatePublic={setShowCreatePublic}

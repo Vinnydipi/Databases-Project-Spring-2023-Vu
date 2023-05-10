@@ -1,6 +1,6 @@
 import React from "react";
 
-function RsoPage(rsoList, setRsoName, navigate, handleJoinRso, handleLeaveRso, handleSubmitNewRso, logout)
+function RsoPage({ rsoList, rsoName, setRsoName, navigate, handleJoinRso, handleLeaveRso, handleSubmitNewRso, logout, uniId, userId })
 {
     return (
         <>

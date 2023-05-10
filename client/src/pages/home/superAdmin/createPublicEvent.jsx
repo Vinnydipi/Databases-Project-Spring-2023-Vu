@@ -11,7 +11,7 @@ function CreatePublicEvent({ setShowCreatePublic, showCreatePublic })
     return(
         <div className='publicEventContainer'>Creating Public Event
             {showCreatePublic && (
-                <form className='publicEvent' onSubmit={ setData(handleCreatePublicEvent, setShowCreatePublic) }>
+                <form className='publicEvent' onSubmit={(event) => setData(event, handleCreatePublicEvent, setShowCreatePublic) }>
                     <button onClick={() => setShowCreatePublic(false)}>X</button>
                     <br></br>
                     <label>Event Name:</label><br></br>
