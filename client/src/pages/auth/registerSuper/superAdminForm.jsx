@@ -1,7 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function SuperAdminForm({ navigate, setUsernameReg, setPasswordReg, setEmailReg, superAdminRegister })
+function SuperAdminForm({ setUsernameReg, setPasswordReg, setEmailReg, RegisterSuperAdminFunc })
 {
+    // Used to navigate to the login page
+    const navigate = useNavigate();
+    
     return (
         <div className='container'>
         <div className='navButtons'>
@@ -38,7 +42,7 @@ function SuperAdminForm({ navigate, setUsernameReg, setPasswordReg, setEmailReg,
             </input>
           </div>
           <div className='buttons'>
-            <button onClick={superAdminRegister}>Register as SuperAdmin</button>
+            <button onClick={RegisterSuperAdminFunc}>Register as SuperAdmin</button>
           </div>
         </div>
       </div>

@@ -22,7 +22,7 @@ function RegisterSuperAdmin()
 	// Used to register a new superadmin account
 	const handleSuperAdminRegister = () => 
 	{
-		RegisterSuperAdminFunc(usernameReg, passwordReg, emailReg)
+		RegisterSuperAdminFunc(usernameReg, passwordReg, emailReg, navigate)
 	};
 
 	// HTML FOR THE FILE 
@@ -31,7 +31,6 @@ function RegisterSuperAdmin()
 			<NavButtons/>
 
 			<SuperAdminForm
-				navigate={navigate}
 				setUsernameReg={setUsernameReg}
 				setPasswordReg={setPasswordReg}
 				setEmailReg={setEmailReg}
