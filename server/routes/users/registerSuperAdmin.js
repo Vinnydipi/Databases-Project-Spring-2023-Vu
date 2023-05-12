@@ -14,11 +14,10 @@ router.post('/', (req, res) =>
     
     const domain = email.split('@')[1];
 
-    // Query checking if a superadmin account is already in the DB for the uni
     const checkQuery = '\
-        SELECT COUNT(*) AS count FROM users\
-        WHERE userType = "superadmin"\
-        AND universityId = ?';
+    SELECT COUNT(*) AS count FROM users\
+    WHERE userType = "superadmin"\
+    AND SUBSTRING_INDEX(email, "@", -1) = ?';
     
     // Set the universityId
     uniId = getUniversityId(domain);

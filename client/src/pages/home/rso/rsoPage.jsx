@@ -1,51 +1,13 @@
-/* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Axios from 'axios';
+import React from "react";
 
-// Logout feature
-import { logout } from '../../components/logout';
-
-// Import API functions
-import { handleSubmitNewRso } from '../API/rso/handleSubmitNewRso';
-import { handleJoinRso } from '../API/rso/handleJoin';
-import { handleLeaveRso } from '../API/rso/handleLeaveRso'
-
-function MainRso()
+function RsoPage({ rsoList, rsoName, setRsoName, navigate, handleJoinRso, handleLeaveRso, handleSubmitNewRso, logout, uniId, userId })
 {
-    // Used to navigate around the web app
-    const navigate = useNavigate();
-
-    // useState used to hold the RSO name to be sent to the backend
-    const [rsoName, setRsoName] = useState('');
-    // useState used to hold RSO's in the database and display them in the table
-    const [rsoList, setRsoList] = useState([]);
-
-    const uniId = sessionStorage.getItem('universityId')
-    const userId = sessionStorage.getItem('id')
-
-    // useEffect to show RSO's in the database with two actions
-    // 1. Join the RSO if you are not currently a member
-    // 2. Leave and RSO you are a member of
-    useEffect(() => 
-    {
-        Axios.get(`http://localhost:3001/mainPage/MainRso?uniId=${uniId}&userId=${userId}`)
-        .then((response) =>
-            {
-                setRsoList(response.data);
-            })
-            .catch((error) =>
-            {
-                console.log(error);
-            });
-    }, [rsoName, uniId, userId]);
-
     return (
         <>
-        <div className='navButtons'>
-            <button onClick={ logout }>Logout</button>
-            <button onClick={() => navigate('/mainPage')}>Home</button>
-        </div>
+            <div className='taskBar'>
+                <button onClick={ logout }>Logout</button>
+                <button onClick={() => navigate('/mainPage')}>Home</button>
+            </div>
             <div className='inputForm'>
                 RSO PAGE
                 <form className='createRsoForm' id='createRsoForm' onSubmit={(e) =>
@@ -104,4 +66,4 @@ function MainRso()
     )
 }
 
-export default MainRso;
+export default RsoPage;

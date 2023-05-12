@@ -8,6 +8,7 @@ export function NavButtons()
 
     return (
         <div className='navButtons'>
+            <button>Project Description</button>
             {location.pathname !== '/' && (
                 <button onClick={() => navigate('/')}>To Login Page</button>
             )}

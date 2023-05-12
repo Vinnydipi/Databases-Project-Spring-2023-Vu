@@ -2,7 +2,7 @@ import React from "react";
 
 function Table ({ h2Tag, navigate, eventList })
 {
-    const handleMapClick = (lat, long) =>
+    const handleMapClick = (long, lat) =>
     {
         // Construct the google maps URL with the lat and long
         const mapUrl = `https://www.google.com/maps?q=${lat},${long}`;

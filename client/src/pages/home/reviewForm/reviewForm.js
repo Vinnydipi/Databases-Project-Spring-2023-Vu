@@ -58,7 +58,7 @@ function ReviewForm()
             <title>Review Page</title>
                 <h1>Review Page</h1>
                 <div className='mainContainer'>
-                    <div className='navigationbuttons'>
+                    <div className='taskBar'>
                         {/* Logout Button */}
                         <button onClick={ logout }>Logout</button>
                         {/* Navigates back to the Events page */}

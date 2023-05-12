@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 // Import form
 import AdminCreateEvent from '../adminButton/adminCreateEvent';
 // Import superAdmin buttons
-import CreatePublicEvent from '../superAdminButton/createPublicEvent';
-import CreateUniversity from '../superAdminButton/createUniversity';
+import CreatePublicEvent from '../superAdmin/createPublicEvent';
+import CreateUniversity from '../superAdmin/createUniversity';
 
 // Importing the logout feature
 import { logout } from '../../components/logout';
@@ -22,6 +22,7 @@ function Navigation({ navigate, userType })
             {userType === 'admin' && (showForm 
                 ? <AdminCreateEvent setShowForm={ setShowForm } showForm={showForm} /> 
                 : <button onClick={() => setShowForm(true)}>Create Event</button>)}
+                
             {userType === "superadmin" && (showCreatePublic ? (
                 <CreatePublicEvent
                     setShowCreatePublic={setShowCreatePublic}
