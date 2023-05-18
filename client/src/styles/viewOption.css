@@ -1,0 +1,29 @@
+/* Global styles */
+body 
+{
+    font-family: Arial, sans-serif;
+    margin: 10px;
+    padding: 0;
+}
+  
+/* ViewOptions component styles */
+.viewContainer 
+{
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+  
+.viewContainer h3 
+{
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+  
+.viewContainer label 
+{
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+}

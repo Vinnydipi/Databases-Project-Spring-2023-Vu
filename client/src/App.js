@@ -1,26 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Axios from 'axios';
-import { UserContext } from './pages/utils/UserContext';
+import { createContext } from 'react';
 
 // Importing Pages
 // RandomVu Pages
-import Login from './pages/auth/login/login';
+import Login from './auth/login/login'
 // SuperAdmin Pages
-import RegisterSuperAdmin from './pages/auth/registerSuper/registerSuperAdmin';
+import RegisterSuperAdmin from './auth/registerSuper/registerSuperAdmin';
 // Admin Pages
-import AdminCreateEvent from './pages/home/adminButton/adminCreateEvent';
+import AdminCreateEvent from './adminButton/adminCreateEvent';
 // Student Pages
-import MainPage from './pages/home/mainPage';
-import RegisterStudent from './pages/auth/registerStudent/registerStudent';
-import ReviewForm from './pages/home//reviewForm/reviewForm';
-import EditReviews from './pages/home/editReviewButton/editReviews';
-import MainRso from './pages/home/rso/mainRso';
+import Home from  './home/mainPage'
+import RegisterStudent from './auth/registerStudent/registerStudent'
+import ReviewForm from './reviewForm/reviewForm'
+import EditReviews from './editReviewButton/editReviews';
+import MainRso from './rso/mainRso';
 
 function App() 
 {    
   const [loginStatus, setLoginStatus] = useState('');
   const [userType, setUserType] = useState('');
+  // Init userContext
+  const UserContext = createContext();
 
   // Used to log the user in and create a cookie to track the current user 
   useEffect(() => 
@@ -47,7 +49,7 @@ function App()
             <Route path="/registerSuperAdmin" element={<RegisterSuperAdmin/>}/>
             {/*Routes For Super Admin*/}
             {/*Routes For Student*/}
-            <Route path="/mainPage" element={ loginStatus ? <MainPage loginStatus={ loginStatus }/> : <Login setLoginStatus={ setLoginStatus }/> }/>
+            <Route path="/mainPage" element={ loginStatus ? <Home loginStatus={ loginStatus }/> : <Login setLoginStatus={ setLoginStatus }/> }/>
             <Route path="/mainPage/ReviewForm" element={ loginStatus ? <ReviewForm loginStatus={ loginStatus }/> : <Login setLoginStatus={ setLoginStatus }/> }/>
             <Route path="/mainPage/editReviews" element={ loginStatus ? <EditReviews loginStatus={ loginStatus }/> : <Login setLoginStatus={ setLoginStatus }/> }/>
             <Route path="/mainPage/mainRso" element={ loginStatus ? <MainRso loginStatus={ loginStatus }/> : <Login setLoginStatus={ setLoginStatus }/> }/>
