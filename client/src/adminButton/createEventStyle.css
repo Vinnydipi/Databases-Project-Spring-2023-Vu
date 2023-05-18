@@ -62,7 +62,7 @@
   
 .submit-cancel-wrapper button.sub-cancel:hover 
 {
-    background-color: gold;
+    background-color: RGB(255, 205, 0);
     color: black;
 }
 
@@ -90,5 +90,5 @@
 
 .eventForm::-webkit-scrollbar-thumb:hover 
 {
-    background-color: gold;
+    background-color: RGB(255, 205, 0);
 }

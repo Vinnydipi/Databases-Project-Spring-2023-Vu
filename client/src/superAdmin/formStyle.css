@@ -79,6 +79,6 @@
   }
   
   .publicEvent::-webkit-scrollbar-thumb:hover {
-    background-color: gold;
+    background-color: RGB(255, 205, 0);
   }
   
