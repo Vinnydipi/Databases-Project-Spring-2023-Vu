@@ -5,7 +5,6 @@ import Axios from 'axios';
 
 // Import React Components
 import TaskBar from './navigation';
-import ViewOptions from './viewOptions';
 import Table  from './table'
 
 // Importing styles for the components
@@ -53,11 +52,15 @@ function Home()
           </div>
           {/* page title */}
           <h1>HOME PAGE</h1>
-          <div className='viewOptions'>
-            <ViewOptions viewOption={ viewOption } setViewOption={ setViewOption } setH2Tag={ setH2Tag }/>
-          </div>
           <div className='table'>
-            <Table h2Tag={ h2Tag } navigate={ navigate } eventList={ eventList }/>
+            <Table  h2Tag={ h2Tag } 
+                    navigate={ navigate } 
+                    eventList={ eventList }
+					// FOR VIEWOPTIONS COMPONENT
+					viewOption={ viewOption }
+					setViewOption={ setViewOption }
+					setH2Tag={ setH2Tag }            
+            />
           </div>
         </div>
     );     

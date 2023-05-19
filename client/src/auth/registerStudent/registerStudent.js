@@ -7,7 +7,7 @@ import '../authPageStyle.css';
 // Import function
 import { studentRegister } from './studentFunc';
 // Import NavBar
-import NavButtons from '../authNavBar';
+import TaskBar from '../authTaskBar';
 
 function RegisterStudent() 
 {
@@ -28,8 +28,7 @@ function RegisterStudent()
     // JSX  
     return (
         <div>
-            <NavButtons/>
-            
+            <TaskBar/>
             <RegistrationForm
                 navigate={navigate}
                 setUsernameReg={setUsernameReg}

@@ -8,6 +8,8 @@ import CreateUniversity from '../superAdmin/createUniversity';
 
 // Importing the logout feature
 import { logout } from '../components/logout'
+//Import Logo
+import Logo from '../components/Logo';
 
 // Importing the Style
 import '../styles/navigationStyle.css'
@@ -20,6 +22,7 @@ function TaskBar({ navigate, userType })
 
     return (
         <div className="taskBar">
+            <Logo/>
             {/* Navigates to the RSO page */}
             <button className='navButton' onClick={() => navigate('/mainPage/MainRso')}>View RSO's</button>
             {userType === 'admin' && (showForm 

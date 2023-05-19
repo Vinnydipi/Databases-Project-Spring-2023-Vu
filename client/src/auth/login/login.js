@@ -9,7 +9,7 @@ import '../authPageStyle.css';
 import { handleLogin } from './loginFunc';
 // Import JSX
 import LoginForm from './loginForm';
-import NavButtons from '../authNavBar';
+import TaskBar from '../authTaskBar';
 
 function Login()
 {
@@ -48,8 +48,7 @@ function Login()
     // HTML FOR THE FILE
     return (
       <div>
-        <NavButtons/>
-
+        <TaskBar/>
         <LoginForm
           setUsername={setUsername}
           setPassword={setPassword}

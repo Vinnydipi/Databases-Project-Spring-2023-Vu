@@ -18,7 +18,7 @@
     background-color: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: -15px 10px 40px black;
     height: 600px;
     width: 500px;
     overflow: auto;
@@ -66,7 +66,7 @@
     color: black;
 }
 
-.title 
+.title
 {
     text-align: center;
 }

@@ -2,11 +2,15 @@ import React from "react";
 
 import './rsoStyle.css';
 
+// Import Logo
+import Logo from '../components/Logo';
+
 function RsoPage({ rsoList, rsoName, setRsoName, navigate, handleJoinRso, handleLeaveRso, handleSubmitNewRso, logout, uniId, userId })
 {
     return (
         <>
             <div className='taskBar'>
+                <Logo/>
                 <button onClick={ logout }>Logout</button>
                 <button onClick={() => navigate('/mainPage')}>Home</button>
             </div>

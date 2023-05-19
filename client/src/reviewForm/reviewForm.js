@@ -6,14 +6,18 @@ import Axios from 'axios';
 // Logout feature
 import { logout } from '../components/logout';
 
+// Import logo
+import Logo from '../components/Logo'
+
+// import Style
+import './reviewFormStyle.css';
+
 function ReviewForm()
 {
     // Used to navigate around the web app
     const navigate = useNavigate();
     // Setting the userName = to a variable to use later
     const userId = sessionStorage.getItem('id');
-    // Gets the eventName in DB
-    const curEvent = sessionStorage.getItem('curEvent');
     // Gets the eventId in DB
     const eventId = sessionStorage.getItem('eventId'); 
     // Set the useStates for review and rate
@@ -59,6 +63,8 @@ function ReviewForm()
                 <h1>Review Page</h1>
                 <div className='mainContainer'>
                     <div className='taskBar'>
+                        {/* UCF LOGO */}
+                        <Logo/>
                         {/* Navigates back to the Events page */}
                         <button onClick= {() => {
                             sessionStorage.removeItem('eventName');

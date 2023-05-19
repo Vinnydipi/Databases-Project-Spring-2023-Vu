@@ -7,7 +7,7 @@ import '../authPageStyle.css';
 import { RegisterSuperAdminFunc } from './superAdminFunc';
 import SuperAdminForm from './superAdminForm';
 // Import navBar
-import NavButtons from '../authNavBar';
+import TaskBar from '../authTaskBar';
 
 function RegisterSuperAdmin() 
 {
@@ -28,8 +28,7 @@ function RegisterSuperAdmin()
 	// HTML FOR THE FILE 
 	return (
 		<div>
-			<NavButtons/>
-
+			<TaskBar/>
 			<SuperAdminForm
 				setUsernameReg={setUsernameReg}
 				setPasswordReg={setPasswordReg}

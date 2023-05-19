@@ -5,7 +5,7 @@ body
     margin: 10px;
     padding: 0;
 }
-  
+
 /* ViewOptions component styles */
 .viewContainer 
 {
@@ -14,13 +14,13 @@ body
     border-radius: 5px;
     margin-bottom: 20px;
 }
-  
+
 .viewContainer h3 
 {
     font-size: 18px;
     margin-bottom: 10px;
 }
-  
+
 .viewContainer label 
 {
     display: block;

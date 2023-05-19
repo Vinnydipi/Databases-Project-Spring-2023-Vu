@@ -13,18 +13,14 @@ function CreateUniversity({ showCreateUni, setShowCreateUni })
             {showCreateUni && (
                 <form className='createForm' onSubmit={(event) => setUniData(event, handleCreateUniversity, setShowCreateUni)}>
                     <h1 className='title'>New University</h1>
-                    <label>University Name:</label><br></br>
+                    <label>University Name:</label>
                         <input placeholder='Exact University Name' type='text' name='name' required/>
-                    <br></br>
-                    <label>Location:</label><br></br>
+                    <label>Location:</label>
                         <input placeholder='City' type='text' name='location' required/>
-                    <br></br>
-                    <label>Description:</label><br></br>
+                    <label>Description:</label>
                         <textarea placeholder='200 Characters Max' name='description' required/>
-                    <br></br>
-                    <label>Email Domain(Do Not Include @):</label><br></br>
+                    <label>Email Domain(Do Not Include @):</label>
                         <input placeholder='SuperAdmin Email' type='text' name='emailDomain' required></input>
-                    <br></br>
                     <div className='submit-cancel-wrapper'>
                         <button className='sub-cancel' type='submit'>Submit</button>
                         <button className='sub-cancel' onClick={() => setShowCreateUni(false)}>Cancel</button>
