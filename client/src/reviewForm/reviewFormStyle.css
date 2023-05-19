@@ -1,0 +1,88 @@
+.mainContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 20px;
+}
+
+.eventTableWrapper {
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.eventTableWrapper h3 {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.eventTableWrapper table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.eventTableWrapper th,
+.eventTableWrapper td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.eventTableWrapper th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.eventTableWrapper tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.eventTableWrapper tbody tr:hover {
+  background-color: #e0e0e0;
+}
+
+.reviewForm {
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.reviewForm h2 {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.reviewForm label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.reviewForm select,
+.reviewForm textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.reviewForm button[type='submit'] {
+  background-color: #ffc600;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.reviewForm button[type='submit']:hover {
+  background-color: #ffdb4d;
+}
+
+.reviewForm textarea {
+  height: 100px;
+}
